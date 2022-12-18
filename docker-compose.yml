@@ -20,9 +20,44 @@ services:
       - 8000:8000
     restart: unless-stopped
     depends_on:
+      # - auth
+      # - events
       - clubs
+      # - discussion
+      # - mailing
+
+  
+  # auth:
+  #   build: ./auth
+  #   env_file:
+  #     - ./.env
+  #   depends_on:
+  #     - mongo
+  
+  # events:
+  #   build: ./events
+  #   env_file:
+  #     - ./.env
+  #   depends_on:
+  #     - mongo
   
   clubs:
     build: ./clubs
     env_file:
       - ./.env
+    depends_on:
+      - mongo
+  
+  # discussion:
+  #   build: ./discussion
+  #   env_file:
+  #     - ./.env
+  #   depends_on:
+  #     - mongo
+  
+  # mailing:
+  #   build: ./mailing
+  #   env_file:
+  #     - ./.env
+  #   depends_on:
+  #     - mongo
