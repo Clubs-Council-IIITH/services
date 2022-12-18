@@ -2,6 +2,8 @@ version: '3.8'
 
 volumes:
   mongo_data:
+  supergraph_data:
+
 
 services:
   mongo:
@@ -14,47 +16,50 @@ services:
       - ./.env
     restart: always
 
-  gateway:
-    build: ./gateway
-    ports:
-      - 8000:8000
-    restart: unless-stopped
-    depends_on:
-      # - auth
-      # - events
-      - clubs
-      # - discussion
-      # - mailing
+  composer:
+    build: ./composer
+    volumes:
+      - supergraph_data:/data
 
-  
+  router:
+    image: ghcr.io/apollographql/router:v1.6.0
+    ports:
+      - 8000:4000
+    volumes:
+      - supergraph_data:/dist/data
+    command: --dev --supergraph /dist/data/supergraph.graphql
+    depends_on:
+      composer:
+        condition: service_completed_successfully
+
   # auth:
   #   build: ./auth
   #   env_file:
   #     - ./.env
   #   depends_on:
   #     - mongo
-  
+
   # events:
   #   build: ./events
   #   env_file:
   #     - ./.env
   #   depends_on:
   #     - mongo
-  
+
   clubs:
     build: ./clubs
     env_file:
       - ./.env
     depends_on:
       - mongo
-  
+
   # discussion:
   #   build: ./discussion
   #   env_file:
   #     - ./.env
   #   depends_on:
   #     - mongo
-  
+
   # mailing:
   #   build: ./mailing
   #   env_file:

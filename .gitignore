@@ -1,5 +1,5 @@
 .env
-gateway/
+composer/
 clubs/
 auth/
 events/
