@@ -10,7 +10,7 @@ git clone https://github.com/Clubs-Council-IIITH/services.git
 
 Inside it, clone the service repositories:
 ```
-git clone https://github.com/Clubs-Council-IIITH/gateway.git
+git clone https://github.com/Clubs-Council-IIITH/composer.git
 
 git clone https://github.com/Clubs-Council-IIITH/auth.git
 git clone https://github.com/Clubs-Council-IIITH/clubs.git
