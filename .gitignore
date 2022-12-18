@@ -1,1 +1,7 @@
 .env
+gateway/
+clubs/
+auth/
+events/
+discussion/
+mailing/
