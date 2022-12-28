@@ -27,6 +27,8 @@ services:
       - 8000:8000
     volumes:
       - supergraph_data:/data
+    env_file:
+      - ./.env
     depends_on:
       composer:
         condition: service_completed_successfully
