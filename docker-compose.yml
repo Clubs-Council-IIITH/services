@@ -6,6 +6,21 @@ volumes:
 
 
 services:
+  composer:
+    build: ./composer
+    volumes:
+      - supergraph_data:/data
+
+  gateway:
+    build: ./gateway
+    volumes:
+      - supergraph_data:/data
+    env_file:
+      - ./.env
+    depends_on:
+      composer:
+        condition: service_completed_successfully
+
   mongo:
     image: mongo:6.0.2
     volumes:
@@ -16,29 +31,20 @@ services:
       - ./.env
     restart: always
 
-  composer:
-    build: ./composer
+  nginx:
+    image: nginx:1.23-alpine
     volumes:
-      - supergraph_data:/data
-        
-  gateway:
-    build: ./gateway
-    ports: 
-      - 8000:8000
-    volumes:
-      - supergraph_data:/data
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - 80:80
+    depends_on:
+      - auth
+      - gateway
+
+  auth:
+    build: ./auth
     env_file:
       - ./.env
-    depends_on:
-      composer:
-        condition: service_completed_successfully
-
-  # auth:
-  #   build: ./auth
-  #   env_file:
-  #     - ./.env
-  #   depends_on:
-  #     - mongo
 
   # events:
   #   build: ./events
@@ -48,7 +54,7 @@ services:
   #     - mongo
 
   clubs:
-    build: ./clubs
+    build: ./service-template
     env_file:
       - ./.env
     depends_on:
