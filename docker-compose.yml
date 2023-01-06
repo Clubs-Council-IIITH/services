@@ -1,82 +1,82 @@
 version: '3.8'
 
 volumes:
-  mongo_data:
-  supergraph_data:
+    mongo_data:
+    supergraph_data:
 
 
 services:
-  composer:
-    build: ./composer
-    volumes:
-      - supergraph_data:/data
+    composer:
+        build: ./composer
+        volumes:
+            - supergraph_data:/data
 
-  gateway:
-    build: ./gateway
-    volumes:
-      - supergraph_data:/data
-    env_file:
-      - ./.env
-    depends_on:
-      composer:
-        condition: service_completed_successfully
+    gateway:
+        build: ./gateway
+        volumes:
+            - supergraph_data:/data
+        env_file:
+            - ./.env
+        depends_on:
+            composer:
+                condition: service_completed_successfully
 
-  mongo:
-    image: mongo:6.0.2
-    volumes:
-      - mongo_data:/data/db
-    ports:
-      - 27017:27017
-    env_file:
-      - ./.env
-    restart: always
+    mongo:
+        image: mongo:6.0.2
+        volumes:
+            - mongo_data:/data/db
+        ports:
+            - 27017:27017
+        env_file:
+            - ./.env
+        restart: always
 
-  nginx:
-    image: nginx:1.23-alpine
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-    ports:
-      - 80:80
-    depends_on:
-      - auth
-      - gateway
+    nginx:
+        image: nginx:1.23-alpine
+        volumes:
+            - ./nginx:/etc/nginx/conf.d
+        ports:
+            - 80:80
+        depends_on:
+            - auth
+            - gateway
 
-  auth:
-    build: ./auth
-    env_file:
-      - ./.env
+    auth:
+        build: ./auth
+        env_file:
+            - ./.env
 
-  users:
-    build: ./users
-    env_file:
-      - ./.env
-    depends_on:
-      - mongo
+    users:
+        build: ./users
+        env_file:
+            - ./.env
+        depends_on:
+            - mongo
 
-  # events:
-  #   build: ./events
-  #   env_file:
-  #     - ./.env
-  #   depends_on:
-  #     - mongo
+    # events:
+    #   build: ./events
+    #   env_file:
+    #     - ./.env
+    #   depends_on:
+    #     - mongo
 
-  # clubs:
-  #   build: ./service-template
-  #   env_file:
-  #     - ./.env
-  #   depends_on:
-  #     - mongo
+    clubs:
+        build: ./clubs
+        env_file:
+            - ./.env
+        depends_on:
+            - mongo
+    
+    # discussion:
+    #   build: ./discussion
+    #   env_file:
+    #     - ./.env
+    #   depends_on:
+    #     - mongo
 
-  # discussion:
-  #   build: ./discussion
-  #   env_file:
-  #     - ./.env
-  #   depends_on:
-  #     - mongo
-
-  # mailing:
-  #   build: ./mailing
-  #   env_file:
-  #     - ./.env
-  #   depends_on:
-  #     - mongo
+    # mailing:
+    #   build: ./mailing
+    #   env_file:
+    #     - ./.env
+    #   depends_on:
+    #     - mongo
