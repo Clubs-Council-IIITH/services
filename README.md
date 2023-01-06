@@ -3,23 +3,9 @@
 Configurations for services and containers.
 
 ## Setup
-Clone the main repository:
+Clone the main repository and submodules:
 ```
-git clone https://github.com/Clubs-Council-IIITH/services.git
-```
-
-Inside it, clone the service repositories:
-```
-git clone https://github.com/Clubs-Council-IIITH/composer.git
-git clone https://github.com/Clubs-Council-IIITH/gateway.git
-
-git clone https://github.com/Clubs-Council-IIITH/auth.git
-git clone https://github.com/Clubs-Council-IIITH/users.git
-
-git clone https://github.com/Clubs-Council-IIITH/clubs.git
-git clone https://github.com/Clubs-Council-IIITH/events.git
-git clone https://github.com/Clubs-Council-IIITH/discussion.git
-git clone https://github.com/Clubs-Council-IIITH/mailing.git
+git clone -j8 --recurse-submodules --remote-submodules git@github.com:Clubs-Council-IIITH/services.git
 ```
 
 Copy .env file:
@@ -29,5 +15,12 @@ cp .env.example .env
 
 Build and spin up all services:
 ```
-docker compose up --build -d
+make
 ```
+
+## Using the development makefile
+- `make`: Spin up all services.
+- `make start s="<service1> <service2> ..."`: Start specified services.
+- `make stop s="<service1> <service2> ..."`: Stop specified services.
+- `make restart s="<service1> <service2> ..."`: Restart specified services.
+- `make clean`: Bring down all services and clear volumes and orphans.
