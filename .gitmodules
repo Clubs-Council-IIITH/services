@@ -1,6 +1,9 @@
 [submodule "auth"]
 	path = auth
 	url = git@github.com:Clubs-Council-IIITH/auth.git
+[submodule "auth-dev"]
+	path = auth-dev
+	url = git@github.com:Clubs-Council-IIITH/auth-dev.git
 [submodule "composer"]
 	path = composer
 	url = git@github.com:Clubs-Council-IIITH/composer.git

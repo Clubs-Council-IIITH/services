@@ -42,7 +42,7 @@ services:
             - gateway
 
     auth:
-        build: ./auth
+        build: ./auth-dev
         env_file:
             - ./.env
 
