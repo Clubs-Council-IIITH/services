@@ -19,3 +19,6 @@
 [submodule "auth-dev"]
 	path = auth-dev
 	url = git@github.com:Clubs-Council-IIITH/auth-dev.git
+[submodule "web"]
+	path = web
+	url = git@github.com:Clubs-Council-IIITH/web.git

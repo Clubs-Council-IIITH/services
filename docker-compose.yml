@@ -40,9 +40,15 @@ services:
         depends_on:
             - auth
             - gateway
+            - web
 
     auth:
         build: ./auth-dev
+        env_file:
+            - ./.env
+
+    web:
+        build: ./web
         env_file:
             - ./.env
 
