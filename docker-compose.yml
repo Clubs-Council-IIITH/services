@@ -31,6 +31,11 @@ services:
             - ./.env
         restart: always
 
+    files:
+        build: ./files
+        env_file:
+            - ./.env
+
     nginx:
         image: nginx:1.23-alpine
         volumes:
@@ -39,6 +44,7 @@ services:
             - 80:80
         depends_on:
             - auth
+            - files
             - gateway
             - web
 

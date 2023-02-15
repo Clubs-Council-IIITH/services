@@ -22,3 +22,6 @@
 [submodule "web"]
 	path = web
 	url = git@github.com:Clubs-Council-IIITH/web.git
+[submodule "files"]
+	path = files
+	url = git@github.com:Clubs-Council-IIITH/files.git
