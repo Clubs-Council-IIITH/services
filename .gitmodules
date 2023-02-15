@@ -25,3 +25,6 @@
 [submodule "files"]
 	path = files
 	url = git@github.com:Clubs-Council-IIITH/files.git
+[submodule "interfaces"]
+	path = interfaces
+	url = git@github.com:Clubs-Council-IIITH/interfaces.git
