@@ -25,8 +25,16 @@ services:
         image: mongo:6.0.2
         volumes:
             - mongo_data:/data/db
+        env_file:
+            - ./.env
+        restart: always
+
+    mongo-express:
+        image: mongo-express:latest
         ports:
-            - 27017:27017
+            - 8081:8081
+        depends_on:
+            - mongo
         env_file:
             - ./.env
         restart: always
