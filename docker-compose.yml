@@ -92,10 +92,3 @@ services:
     #     - ./.env
     #   depends_on:
     #     - mongo
-
-    # mailing:
-    #   build: ./mailing
-    #   env_file:
-    #     - ./.env
-    #   depends_on:
-    #     - mongo
