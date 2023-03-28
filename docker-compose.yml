@@ -52,6 +52,8 @@ services:
         build: ./auth-dev
         env_file:
             - ./.env
+        volumes:
+            - ./auth-dev:/app
 
     web:
         build: ./web
