@@ -60,6 +60,8 @@ services:
         build: ./auth-dev
         env_file:
             - ./.env
+        volumes:
+            - ./auth-dev:/app
 
     web:
         build: ./web
@@ -72,6 +74,8 @@ services:
             - ./.env
         depends_on:
             - mongo
+        volumes:
+            - ./users:/app
 
     interfaces:
         build: ./interfaces
@@ -79,6 +83,8 @@ services:
             - ./.env
         depends_on:
             - mongo
+        volumes:
+            - ./interfaces:/app
 
     # events:
     #   build: ./events
@@ -86,6 +92,8 @@ services:
     #     - ./.env
     #   depends_on:
     #     - mongo
+    #   volumes:
+    #     - ./events:/app
 
     clubs:
         build: ./clubs
@@ -93,16 +101,11 @@ services:
             - ./.env
         depends_on:
             - mongo
+        volumes:
+            - ./clubs:/app
     
     # discussion:
     #   build: ./discussion
-    #   env_file:
-    #     - ./.env
-    #   depends_on:
-    #     - mongo
-
-    # mailing:
-    #   build: ./mailing
     #   env_file:
     #     - ./.env
     #   depends_on:
