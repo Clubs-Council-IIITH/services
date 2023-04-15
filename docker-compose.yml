@@ -86,14 +86,14 @@ services:
         volumes:
             - ./interfaces:/app
 
-    # events:
-    #   build: ./events
-    #   env_file:
-    #     - ./.env
-    #   depends_on:
-    #     - mongo
-    #   volumes:
-    #     - ./events:/app
+    events:
+        build: ./events
+        env_file:
+            - ./.env
+        depends_on:
+            - mongo
+        volumes:
+            - ./events:/app
 
     clubs:
         build: ./clubs
