@@ -1,0 +1,26 @@
+version: '3.8'
+
+volumes:
+    mongo_data:
+    supergraph_data:
+
+
+services:
+    mongo-express:
+        image: mongo-express:latest
+        ports:
+            - 8081:8081
+        depends_on:
+            - mongo
+        env_file:
+            - ./.env
+        restart: always
+
+    web:
+        build: 
+            context: ./web
+            dockerfile: dev.Dockerfile
+        volumes:
+            - ./web:/web
+        env_file:
+            - ./.env
