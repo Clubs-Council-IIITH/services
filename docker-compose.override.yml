@@ -16,11 +16,18 @@ services:
             - ./.env
         restart: always
 
+    auth:
+        build: ./auth-dev
+        env_file:
+            - ./.env
+        volumes:
+            - ./auth-dev:/app
+
     web:
         build: 
             context: ./web
             dockerfile: dev.Dockerfile
-        volumes:
-            - ./web:/web
         env_file:
             - ./.env
+        volumes:
+            - ./web:/web
