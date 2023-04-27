@@ -2,6 +2,9 @@ dc=docker-compose
 
 all:
 	$(dc) up --build -d
+
+prod:
+	$(dc) -f docker-compose.yml up --build -d
 	
 start:
 	$(dc) up $(s) --build -d

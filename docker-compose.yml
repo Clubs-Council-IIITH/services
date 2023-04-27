@@ -62,8 +62,6 @@ services:
             - ./.env
         depends_on:
             - mongo
-        volumes:
-            - ./users:/app
 
     interfaces:
         build: ./interfaces
@@ -71,8 +69,6 @@ services:
             - ./.env
         depends_on:
             - mongo
-        volumes:
-            - ./interfaces:/app
 
     events:
         build: ./events
@@ -80,8 +76,6 @@ services:
             - ./.env
         depends_on:
             - mongo
-        volumes:
-            - ./events:/app
 
     clubs:
         build: ./clubs
@@ -89,8 +83,6 @@ services:
             - ./.env
         depends_on:
             - mongo
-        volumes:
-            - ./clubs:/app
     
     # discussion:
     #   build: ./discussion
