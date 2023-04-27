@@ -1,7 +1,6 @@
 version: '3.8'
 
 volumes:
-    mongo_data:
     supergraph_data:
 
 
@@ -24,13 +23,15 @@ services:
     mongo:
         image: mongo:6.0.2
         volumes:
-            - mongo_data:/data/db
+            - ./.mounted/mongo:/data/db
         env_file:
             - ./.env
         restart: always
 
     files:
         build: ./files
+        volumes:
+            - ./.mounted/files:/app/files
         env_file:
             - ./.env
 

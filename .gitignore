@@ -1,4 +1,4 @@
 .env
 .vscode/
+.mounted/
 service-template/
-data/
