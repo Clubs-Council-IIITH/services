@@ -28,6 +28,9 @@ eventModel = {
     "budget": [],
 }
 
+# valid audience
+validAudience = set({"ug1", "ug2", "ug3", "ug4", "pg", "fac", "stf"})
+
 if __name__ == "__main__":
     inp_file = sys.argv[1]
     out_file = sys.argv[2]
@@ -61,7 +64,11 @@ if __name__ == "__main__":
             .split(",")
         )
 
-        events.append(event)
+        # constraints
+        if set(event["audience"]).issubset(validAudience):
+            events.append(event)
+        else:
+            print(f"Failed: {event}")
 
     # write to file
     with open(out_file, "w") as f:

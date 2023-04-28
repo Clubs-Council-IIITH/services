@@ -10,30 +10,23 @@ services:
         volumes:
             - supergraph_data:/data
 
-    gateway:
-        build: ./gateway
-        volumes:
-            - supergraph_data:/data
-        env_file:
-            - ./.env
-        depends_on:
-            composer:
-                condition: service_completed_successfully
-
     mongo:
         image: mongo:6.0.2
         volumes:
             - ./.mounted/mongo:/data/db
         env_file:
             - ./.env
-        restart: always
 
-    files:
-        build: ./files
+    gateway:
+        build: ./gateway
         volumes:
-            - ./.mounted/files:/files
+            - supergraph_data:/data
+        depends_on:
+            composer:
+                condition: service_completed_successfully
         env_file:
             - ./.env
+            - ./gateway/.env
 
     nginx:
         image: nginx:1.23-alpine
@@ -47,47 +40,58 @@ services:
             - gateway
             - web
 
-    auth:
-        build: ./auth
-        env_file:
-            - ./.env
-
     web:
         build: ./web
         env_file:
             - ./.env
 
-    users:
-        build: ./users
+    auth:
+        build: ./auth
         env_file:
             - ./.env
-        depends_on:
-            - mongo
+            - ./auth/.env
+
+    files:
+        build: ./files
+        volumes:
+            - ./.mounted/files:/files
+        env_file:
+            - ./.env
+            - ./files/.env
 
     interfaces:
         build: ./interfaces
-        env_file:
-            - ./.env
         depends_on:
             - mongo
-
-    events:
-        build: ./events
         env_file:
             - ./.env
-        depends_on:
-            - mongo
+            - ./interfaces/.env
 
     clubs:
         build: ./clubs
-        env_file:
-            - ./.env
         depends_on:
             - mongo
+        env_file:
+            - ./.env
+
+    events:
+        build: ./events
+        depends_on:
+            - mongo
+        env_file:
+            - ./.env
+
+    users:
+        build: ./users
+        depends_on:
+            - mongo
+        env_file:
+            - ./.env
     
     # discussion:
     #   build: ./discussion
-    #   env_file:
-    #     - ./.env
     #   depends_on:
     #     - mongo
+    #   env_file:
+    #     - ./.env
+ 

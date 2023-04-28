@@ -14,20 +14,20 @@ services:
             - mongo
         env_file:
             - ./.env
-        restart: always
 
     auth:
         build: ./auth-dev
-        env_file:
-            - ./.env
         volumes:
             - ./auth-dev:/app
+        env_file:
+            - ./.env
+            - ./auth-dev/.env
 
     web:
         build: 
             context: ./web
             dockerfile: dev.Dockerfile
-        env_file:
-            - ./.env
         volumes:
             - ./web:/web
+        env_file:
+            - ./.env

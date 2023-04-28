@@ -1,3 +1,6 @@
+# Utility Scripts
+Install all dependencies in `requirements.txt` first.
+
 ## Data format conversion scripts)
 
 ```
@@ -19,5 +22,5 @@ python datautils/imgs.py inp/imgs out/imgs_$date out/users_$date.json
 ```
 
 ```
-cp out/imgs_$date/* ../.mounted/files
+sudo cp out/imgs_$date/* ../.mounted/files
 ```
