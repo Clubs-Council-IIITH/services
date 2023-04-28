@@ -1,20 +1,39 @@
-dc=docker-compose
+# default to dev environment
+ENV ?= dev
+
+# conditionally pick compose config
+ifeq ($(ENV),dev)
+    CONFIG := docker-compose.dev.yml
+    PROJECT := cc-dev
+else
+    CONFIG := docker-compose.prod.yml
+    PROJECT := cc-prod
+endif
+
+# compose command
+DC = docker-compose -f $(CONFIG) -p $(PROJECT)
 
 all:
-	$(dc) up --build -d
+	$(DC) up --build -d
 
-prod:
-	$(dc) -f docker-compose.yml up --build -d
-	
-start:
-	$(dc) up $(s) --build -d
+init:
+	.scripts/init.sh
 
 stop:
-	$(dc) stop $(s)
+	$(DC) stop $(S)
 
-restart:
-	$(dc) stop $(s)
-	$(dc) up $(s) --build -d
+start: stop
+	$(DC) up $(S) --build -d
 
 clean:
-	$(dc) down -v --remove-orphans
+	$(DC) down -v --remove-orphans
+
+logs:
+	$(DC) logs $(S)
+
+ps:
+	$(DC) ps
+
+# push: TODO
+
+# pull: TODO
