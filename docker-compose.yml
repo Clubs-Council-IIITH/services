@@ -31,7 +31,7 @@ services:
     files:
         build: ./files
         volumes:
-            - ./.mounted/files:/app/files
+            - ./.mounted/files:/files
         env_file:
             - ./.env
 

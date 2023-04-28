@@ -42,7 +42,10 @@ done
 # copy file to container
 docker cp $file $container:/tmp
 
+# set filename
+filename=$(echo $file | rev |cut -d"/" -f 1 | rev)
+
 # import inside container
-docker exec $container mongoimport --db $db --collection $collection --type json --file /tmp/$file --jsonArray --username $username --password $password --authenticationDatabase admin
+docker exec $container mongoimport --db $db --collection $collection --type json --file /tmp/$filename --jsonArray --username $username --password $password --authenticationDatabase admin
 
 echo "Done!"

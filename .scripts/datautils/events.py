@@ -54,6 +54,7 @@ if __name__ == "__main__":
         event["poster"] = row["poster"] if row["poster"] != "" else None
         event["audience"] = (
             row["audience"]
+            .replace("internal", "ug1,ug2,ug3")
             .replace("ugx", "ug4")
             .replace("staff", "stf")
             .replace("faculty", "fac")
