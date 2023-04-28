@@ -11,7 +11,7 @@ else
 endif
 
 # compose command
-DC = docker-compose -f $(CONFIG) -p $(PROJECT)
+DC = docker compose -f $(CONFIG) -p $(PROJECT)
 
 all:
 	$(DC) up --build -d
