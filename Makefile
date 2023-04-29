@@ -25,6 +25,9 @@ stop:
 start: stop
 	$(DC) up $(S) --build -d
 
+down:
+	$(DC) down
+
 clean:
 	$(DC) down -v --remove-orphans
 
