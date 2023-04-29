@@ -32,7 +32,7 @@ logs:
 	$(DC) logs $(S)
 
 ps:
-	$(DC) ps
+	$(DC) ps -a
 
 # push: TODO
 
