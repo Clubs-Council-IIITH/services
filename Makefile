@@ -37,8 +37,10 @@ logs:
 ps:
 	$(DC) ps -a
 
-# push: TODO
+pull: 
+	git submodule foreach "git pull origin master"
 
-# pull: TODO
+push: 
+	git -C $(S) push origin master
 
 # backup: TODO
