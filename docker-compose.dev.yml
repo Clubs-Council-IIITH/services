@@ -49,15 +49,23 @@ services:
             - gateway
             - web
 
+    feeder:
+        build: ./feeder
+        volumes:
+            - ./data:/data
+        depends_on:
+            - mongo
+        env_file:
+            - ./.env
+
     web:
-        build: 
+        build:
             context: ./web
             dockerfile: dev.Dockerfile
         volumes:
             - ./web:/web
         env_file:
             - ./.env
-
 
     auth:
         build: ./auth-dev
@@ -66,7 +74,6 @@ services:
         env_file:
             - ./.env
             - ./auth-dev/.env
-
 
     files:
         build: ./files
@@ -104,11 +111,10 @@ services:
             - mongo
         env_file:
             - ./.env
-    
     # discussion:
     #   build: ./discussion
     #   depends_on:
     #     - mongo
     #   env_file:
     #     - ./.env
- 
+

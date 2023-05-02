@@ -1,5 +1,0 @@
-bson==0.5.10
-python-dateutil==2.8.2
-python-ldap==3.4.3
-shortuuid==1.0.11
-Werkzeug==2.3.1

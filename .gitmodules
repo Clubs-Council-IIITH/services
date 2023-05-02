@@ -28,3 +28,6 @@
 [submodule "interfaces"]
 	path = interfaces
 	url = git@github.com:Clubs-Council-IIITH/interfaces.git
+[submodule "feeder"]
+	path = feeder
+	url = git@github.com:Clubs-Council-IIITH/feeder.git

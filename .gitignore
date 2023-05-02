@@ -2,4 +2,5 @@
 .venv/
 .vscode/
 .mounted/
+data/
 service-template/
