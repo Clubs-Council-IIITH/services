@@ -38,6 +38,7 @@ ps:
 	$(DC) ps -a
 
 pull: 
+	git pull
 	git submodule foreach "git pull origin master"
 
 push: 
