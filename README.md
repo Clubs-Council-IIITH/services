@@ -3,17 +3,17 @@
 Configurations for services and containers.
 
 ## Setup
-Clone the main repository and submodules:
+- Clone the main repository and submodules:
 ```
 git clone -j8 --recurse-submodules --remote-submodules git@github.com:Clubs-Council-IIITH/services.git
 ```
 
-Run initialization script:
+- Run initialization script:
 ```
 make init
 ```
 
-Build and spin up all services:
+- Build and spin up all services:
 ```
 make
 ```
