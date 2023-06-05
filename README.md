@@ -6,6 +6,7 @@ Configurations for services and containers.
 - Clone the main repository and submodules:
 ```
 git clone -j8 --recurse-submodules --remote-submodules git@github.com:Clubs-Council-IIITH/services.git
+make pull
 ```
 
 - Run initialization script:
