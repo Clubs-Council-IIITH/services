@@ -41,6 +41,7 @@ services:
         image: nginx:1.23-alpine
         volumes:
             - ./nginx:/etc/nginx/conf.d
+            - ./nginx/html:/usr/share/nginx/html
         ports:
             - 80:80
         depends_on:
