@@ -10,8 +10,7 @@ from copy import deepcopy
 from shortuuid import uuid
 from werkzeug.utils import secure_filename
 
-
-from users import userModel
+from .users import userModel
 
 # LDAP connection
 LDAP = ldap.initialize("ldap://ldap.iiit.ac.in")
@@ -22,6 +21,7 @@ if __name__ == "__main__":
     out_dir = sys.argv[2]
 
     users_json = sys.argv[3]
+    users = None
 
     # open users json if provided
     if users_json:
