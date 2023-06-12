@@ -14,7 +14,7 @@ endif
 DC = docker compose -f $(CONFIG) -p $(PROJECT)
 
 all:
-	$(DC) up --build -d
+	$(DC) up --build -d $(S)
 
 init:
 	.scripts/init.sh
