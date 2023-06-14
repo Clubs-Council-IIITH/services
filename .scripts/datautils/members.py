@@ -7,7 +7,7 @@ from copy import deepcopy
 
 # template member with default fallback values
 memberModel = {
-    "_id": {"$oid": ""},
+    "_id": "",
     "cid": "",
     "uid": "",
     "poc": False,
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         rid = str(bson.objectid.ObjectId())
 
         # set member attributes
-        member["_id"]["$oid"] = _id
+        member["_id"] = _id
         member["cid"] = row["club_mail"].split("@")[0]
         member["uid"] = row["mail"].split("@")[0]
         key = f"{member['cid']}_{member['uid']}"

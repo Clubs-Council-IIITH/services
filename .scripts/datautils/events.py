@@ -7,7 +7,7 @@ from copy import deepcopy
 
 # template event with default fallback values
 eventModel = {
-    "_id": {"$oid": ""},
+    "_id": "",
     "name": "",
     "clubid": "",
     "datetimeperiod": ["", ""],
@@ -49,7 +49,7 @@ if __name__ == "__main__":
         _id = str(bson.objectid.ObjectId())
 
         # set event attributes
-        event["_id"]["$oid"] = _id
+        event["_id"] = _id
         event["name"] = row["name"]
         event["clubid"] = row["club_mail"].split("@")[0]
         event["datetimeperiod"] = [row["datetimeStart"], row["datetimeEnd"]]
