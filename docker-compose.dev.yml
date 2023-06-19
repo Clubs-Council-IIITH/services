@@ -16,6 +16,8 @@ services:
             - ./.mounted/mongo:/data/db
         env_file:
             - ./.env
+        ports:
+            - 27017:27017
 
     mongo-express:
         image: mongo-express:latest
@@ -41,7 +43,7 @@ services:
         image: nginx:1.23-alpine
         volumes:
             - ./nginx:/etc/nginx/conf.d
-            - ./nginx/html:/usr/share/nginx/html
+            - ./static_files:/usr/share/nginx
         ports:
             - 80:80
         depends_on:
