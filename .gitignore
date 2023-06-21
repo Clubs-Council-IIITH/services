@@ -4,3 +4,5 @@
 .mounted/
 data/
 service-template/
+static_files/*
+!static_files/html/
