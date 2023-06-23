@@ -1,15 +1,10 @@
 version: '3.8'
 
 volumes:
-    supergraph_data:
-
+    subgraphs_data:
+    rover_data:
 
 services:
-    composer:
-        build: ./composer
-        volumes:
-            - supergraph_data:/data
-
     mongo:
         image: mongo:4.4.18
         volumes:
@@ -31,13 +26,16 @@ services:
     gateway:
         build: ./gateway
         volumes:
-            - supergraph_data:/data
-        depends_on:
-            composer:
-                condition: service_completed_successfully
+            - subgraphs_data:/subgraphs
+            - rover_data:/root/.rover
         env_file:
             - ./.env
             - ./gateway/.env
+        depends_on:
+            - interfaces
+            - clubs
+            - events
+            - users
 
     nginx:
         image: nginx:1.23-alpine
@@ -70,6 +68,7 @@ services:
         env_file:
             - ./.env
 
+    # services
     auth:
         build: ./auth-dev
         volumes:
@@ -86,8 +85,11 @@ services:
             - ./.env
             - ./files/.env
 
+    # subgraphs
     interfaces:
         build: ./interfaces
+        volumes:
+            - subgraphs_data:/subgraphs
         depends_on:
             - mongo
         env_file:
@@ -96,6 +98,8 @@ services:
 
     clubs:
         build: ./clubs
+        volumes:
+            - subgraphs_data:/subgraphs
         depends_on:
             - mongo
         env_file:
@@ -103,6 +107,8 @@ services:
 
     events:
         build: ./events
+        volumes:
+            - subgraphs_data:/subgraphs
         depends_on:
             - mongo
         env_file:
@@ -110,14 +116,9 @@ services:
 
     users:
         build: ./users
+        volumes:
+            - subgraphs_data:/subgraphs
         depends_on:
             - mongo
         env_file:
             - ./.env
-    # discussion:
-    #   build: ./discussion
-    #   depends_on:
-    #     - mongo
-    #   env_file:
-    #     - ./.env
-
