@@ -8,7 +8,7 @@ usage() {
 
 # default variable values
 db="dev"
-container="cc-mongo-1"
+container="cc-dev-mongo-1"
 username="username"
 password="password"
 
