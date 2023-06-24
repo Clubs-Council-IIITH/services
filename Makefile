@@ -5,6 +5,9 @@ ENV ?= dev
 ifeq ($(ENV),dev)
     CONFIG := docker-compose.dev.yml
     PROJECT := cc-dev
+else ifeq ($(ENV),stage)
+    CONFIG := docker-compose.stage.yml
+    PROJECT := cc-stage
 else
     CONFIG := docker-compose.prod.yml
     PROJECT := cc-prod
