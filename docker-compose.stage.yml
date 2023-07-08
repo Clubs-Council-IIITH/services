@@ -1,0 +1,116 @@
+version: '3.8'
+
+volumes:
+    subgraphs_data:
+    rover_data:
+
+networks:
+  reverse_proxy:
+    external: true
+
+services:
+    mongo:
+        image: mongo:4.4.18
+        volumes:
+            - /mnt/share/mongo_stage:/data/db
+        env_file:
+            - ./.env
+
+    gateway:
+        build: ./gateway
+        volumes:
+            - subgraphs_data:/subgraphs
+            - rover_data:/root/.rover
+        env_file:
+            - ./.env
+            - ./gateway/.env
+        depends_on:
+            - interfaces
+            - clubs
+            - events
+            - users
+
+    nginx:
+        image: nginx:1.23-alpine
+        volumes:
+            - ./nginx:/etc/nginx/conf.d
+            - ./nginx/html:/usr/share/nginx/html
+        expose:
+            - 80
+        depends_on:
+            - auth
+            - files
+            - gateway
+            - web
+        environment:
+            - VIRTUAL_HOST=dev.clubs.iiit.ac.in
+            # - LETSENCRYPT_HOST=clubs.iiit.ac.in
+        networks:
+            - default
+            - reverse_proxy
+
+    feeder:
+        build: ./feeder
+        volumes:
+            - ./data:/data
+        depends_on:
+            - mongo
+        env_file:
+            - ./.env
+
+    web:
+        build: ./web
+        env_file:
+            - ./.env
+
+    auth:
+        build: ./auth
+        env_file:
+            - ./.env
+            - ./auth/.env
+
+    files:
+        build: ./files
+        volumes:
+            - /mnt/share/files1:/files
+        env_file:
+            - ./.env
+            - ./files/.env
+
+    # subgraphs
+    interfaces:
+        build: ./interfaces
+        volumes:
+            - subgraphs_data:/subgraphs
+        depends_on:
+            - mongo
+        env_file:
+            - ./.env
+            - ./interfaces/.env
+
+    clubs:
+        build: ./clubs
+        volumes:
+            - subgraphs_data:/subgraphs
+        depends_on:
+            - mongo
+        env_file:
+            - ./.env
+
+    events:
+        build: ./events
+        volumes:
+            - subgraphs_data:/subgraphs
+        depends_on:
+            - mongo
+        env_file:
+            - ./.env
+
+    users:
+        build: ./users
+        volumes:
+            - subgraphs_data:/subgraphs
+        depends_on:
+            - mongo
+        env_file:
+            - ./.env

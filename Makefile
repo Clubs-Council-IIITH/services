@@ -5,12 +5,10 @@ ENV ?= dev
 ifeq ($(ENV),dev)
     CONFIG := docker-compose.dev.yml
     PROJECT := cc-dev
-endif
-ifeq ($(ENV),staging)
-    CONFIG := docker-compose.staging.yml
-    PROJECT := cc-staging
-endif
-ifeq ($(ENV),prod)
+else ifeq ($(ENV),stage)
+    CONFIG := docker-compose.stage.yml
+    PROJECT := cc-stage
+else
     CONFIG := docker-compose.prod.yml
     PROJECT := cc-prod
 endif

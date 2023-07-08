@@ -19,6 +19,8 @@ make init
 make
 ```
 
+> For other setup options (automated setup) and data files, please visit the [data repository](https://github.com/Clubs-Council-IIITH/data)
+
 ## Using the development makefile
 - `make`: Spin up all services.
 - `make init`: Initialize project directory.
