@@ -2,7 +2,6 @@ version: '3.8'
 
 volumes:
     subgraphs_data:
-    rover_data:
 
 networks:
   reverse_proxy:
@@ -20,7 +19,6 @@ services:
         build: ./gateway
         volumes:
             - subgraphs_data:/subgraphs
-            - rover_data:/root/.rover
         env_file:
             - ./.env
             - ./gateway/.env
