@@ -57,9 +57,10 @@ services:
             - ./.env
 
     web:
-        build: ./web
-        env_file:
-            - ./.env
+        build: 
+            context: ./web
+            args:
+                - ENV=test
 
     auth:
         build: ./auth
