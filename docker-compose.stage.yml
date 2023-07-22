@@ -3,9 +3,9 @@ version: '3.8'
 volumes:
     subgraphs_data:
 
-# networks:
-#   reverse_proxy:
-#     external: true
+networks:
+  reverse_proxy:
+    external: true
 
 services:
     mongo:
@@ -33,19 +33,19 @@ services:
         volumes:
             - ./nginx:/etc/nginx/conf.d
             - ./static_files:/usr/share/nginx
-        ports:
-            - 80:80
+        expose:
+            - 80
         depends_on:
             - auth
             - files
             - gateway
             - web
-        # environment:
-        #     - VIRTUAL_HOST=dev.clubs.iiit.ac.in
+        environment:
+            - VIRTUAL_HOST=dev.clubs.iiit.ac.in
             # - LETSENCRYPT_HOST=clubs.iiit.ac.in
-        # networks:
-        #     - default
-            # - reverse_proxy
+        networks:
+            - default
+            - reverse_proxy
 
     feeder:
         build: ./feeder
@@ -113,5 +113,3 @@ services:
             - mongo
         env_file:
             - ./.env
-        dns:
-            - 10.4.20.204
