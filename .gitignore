@@ -3,6 +3,8 @@
 .vscode/
 .mounted/
 data/
+hooks/
 service-template/
 static_files/*
 !static_files/html/
+web-old/

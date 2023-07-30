@@ -1,124 +1,124 @@
-version: '3.8'
+version: "3.8"
 
 volumes:
-    subgraphs_data:
+  subgraphs_data:
 
 services:
-    mongo:
-        image: mongo:4.4.18
-        volumes:
-            - ./.mounted/mongo:/data/db
-        env_file:
-            - ./.env
-        ports:
-            - 27017:27017
+  mongo:
+    image: mongo:4.4.18
+    volumes:
+      - ./.mounted/mongo:/data/db
+    env_file:
+      - ./.env
+    ports:
+      - 27017:27017
 
-    # mongo-express:
-    #     image: mongo-express:latest
-    #     ports:
-    #         - 8081:8081
-    #     depends_on:
-    #         - mongo
-    #     env_file:
-    #         - ./.env
+  # mongo-express:
+  #     image: mongo-express:latest
+  #     ports:
+  #         - 8081:8081
+  #     depends_on:
+  #         - mongo
+  #     env_file:
+  #         - ./.env
 
-    gateway:
-        build: ./gateway
-        volumes:
-            - subgraphs_data:/subgraphs
-        env_file:
-            - ./.env
-            - ./gateway/.env
-        depends_on:
-            - interfaces
-            - clubs
-            - events
-            - users
+  gateway:
+    build: ./gateway
+    volumes:
+      - subgraphs_data:/subgraphs
+    env_file:
+      - ./.env
+      - ./gateway/.env
+    depends_on:
+      - interfaces
+      - clubs
+      - events
+      - users
 
-    nginx:
-        image: nginx:1.23-alpine
-        volumes:
-            - ./nginx:/etc/nginx/conf.d
-            - ./static_files:/usr/share/nginx
-        ports:
-            - 80:80
-        depends_on:
-            - auth
-            - files
-            - gateway
-            - web
+  nginx:
+    image: nginx:1.23-alpine
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./static_files:/usr/share/nginx
+    ports:
+      - 80:80
+    depends_on:
+      - auth
+      - files
+      - gateway
+      - web
 
-    feeder:
-        build: ./feeder
-        volumes:
-            - ./data:/data
-        depends_on:
-            - mongo
-        env_file:
-            - ./.env
+  feeder:
+    build: ./feeder
+    volumes:
+      - ./data:/data
+    depends_on:
+      - mongo
+    env_file:
+      - ./.env
 
-    web:
-        build:
-            context: ./web
-            dockerfile: dev.Dockerfile
-            args:
-                - ENV=development
-        volumes:
-            - ./web:/web
+  web:
+    build:
+      context: ./web-rsc
+      dockerfile: dev.Dockerfile
+      args:
+        - ENV=development
+    volumes:
+      - ./web-rsc:/web
 
-    # services
-    auth:
-        build: ./auth-dev
-        volumes:
-            - ./auth-dev:/app
-        env_file:
-            - ./.env
-            - ./auth-dev/.env
+  # services
+  auth:
+    build: ./auth-dev
+    volumes:
+      - ./auth-dev:/app
+    env_file:
+      - ./.env
+      - ./auth-dev/.env
 
-    files:
-        build: ./files
-        volumes:
-            - ./.mounted/files:/files
-        env_file:
-            - ./.env
-            - ./files/.env
+  files:
+    build: ./files
+    volumes:
+      - ./.mounted/files:/files
+    env_file:
+      - ./.env
+      - ./files/.env
 
-    # subgraphs
-    interfaces:
-        build: ./interfaces
-        volumes:
-            - subgraphs_data:/subgraphs
-        depends_on:
-            - mongo
-        env_file:
-            - ./.env
-            - ./interfaces/.env
+  # subgraphs
+  interfaces:
+    build: ./interfaces
+    volumes:
+      - subgraphs_data:/subgraphs
+    depends_on:
+      - mongo
+    env_file:
+      - ./.env
+      - ./interfaces/.env
 
-    clubs:
-        build: ./clubs
-        volumes:
-            - subgraphs_data:/subgraphs
-        depends_on:
-            - mongo
-        env_file:
-            - ./.env
+  clubs:
+    build: ./clubs
+    volumes:
+      - subgraphs_data:/subgraphs
+    depends_on:
+      - mongo
+    env_file:
+      - ./.env
 
-    events:
-        build: ./events
-        volumes:
-            - subgraphs_data:/subgraphs
-        depends_on:
-            - mongo
-        env_file:
-            - ./.env
+  events:
+    build: ./events
+    volumes:
+      - subgraphs_data:/subgraphs
+    depends_on:
+      - mongo
+    env_file:
+      - ./.env
 
-    users:
-        build: ./users
-        volumes:
-            - subgraphs_data:/subgraphs
-        depends_on:
-            - mongo
-        env_file:
-            - ./.env
-        dns:
-            - 10.4.20.204
+  users:
+    build: ./users
+    volumes:
+      - subgraphs_data:/subgraphs
+    depends_on:
+      - mongo
+    env_file:
+      - ./.env
+    dns:
+      - 10.4.20.204
