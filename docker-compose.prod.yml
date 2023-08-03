@@ -1,115 +1,112 @@
-version: '3.8'
+version: "3.8"
 
 volumes:
-    subgraphs_data:
+  subgraphs_data:
 
 networks:
   reverse_proxy:
     external: true
 
 services:
-    mongo:
-        image: mongo:4.4.18
-        volumes:
-            - /mnt/share/mongo:/data/db
-        env_file:
-            - ./.env
+  mongo:
+    image: mongo:4.4.18
+    volumes:
+      - /mnt/share/mongo_stage:/data/db
+    env_file:
+      - $CC_CONFIG_PATH/prod/global
 
-    gateway:
-        build: ./gateway
-        volumes:
-            - subgraphs_data:/subgraphs
-        env_file:
-            - ./.env
-            - ./gateway/.env
-        depends_on:
-            - interfaces
-            - clubs
-            - events
-            - users
+  gateway:
+    image: cc-gateway:latest
+    volumes:
+      - subgraphs_data:/subgraphs
+    env_file:
+      - $CC_CONFIG_PATH/prod/global
+      - $CC_CONFIG_PATH/prod/gateway
+    depends_on:
+      - interfaces
+      - clubs
+      - events
+      - users
 
-    nginx:
-        image: nginx:1.23-alpine
-        volumes:
-            - ./nginx:/etc/nginx/conf.d
-            - ./nginx/html:/usr/share/nginx/html
-        expose:
-            - 80
-        depends_on:
-            - auth
-            - files
-            - gateway
-            - web
-        environment:
-            - VIRTUAL_HOST=clubs.iiit.ac.in
-            - LETSENCRYPT_HOST=clubs.iiit.ac.in
-        networks:
-            - default
-            - reverse_proxy
+  nginx:
+    image: nginx:1.23-alpine
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./nginx/html:/usr/share/nginx/html
+    expose:
+      - 80
+    depends_on:
+      - auth
+      - files
+      - gateway
+      - web
+    environment:
+      - VIRTUAL_HOST=clubs.iiit.ac.in
+      - LETSENCRYPT_HOST=clubs.iiit.ac.in
+    networks:
+      - default
+      - reverse_proxy
 
-    feeder:
-        build: ./feeder
-        volumes:
-            - ./data:/data
-        depends_on:
-            - mongo
-        env_file:
-            - ./.env
+  feeder:
+    image: cc-feeder:latest
+    volumes:
+      - ./data:/data
+    depends_on:
+      - mongo
+    env_file:
+      - $CC_CONFIG_PATH/prod/global
 
-    web:
-        build: 
-            context: ./web
-            args:
-             - ENV=production
+  web:
+    image: cc-web:latest
 
-    auth:
-        build: ./auth
-        env_file:
-            - ./.env
-            - ./auth/.env
+  auth:
+    image: cc-auth:latest
+    env_file:
+      - $CC_CONFIG_PATH/prod/global
+      - $CC_CONFIG_PATH/prod/auth
 
-    files:
-        build: ./files
-        volumes:
-            - /mnt/share/files:/files
-        env_file:
-            - ./.env
-            - ./files/.env
+  files:
+    image: cc-files:latest
+    volumes:
+      - /mnt/share/files1:/files
+    env_file:
+      - $CC_CONFIG_PATH/prod/global
+      - $CC_CONFIG_PATH/prod/files
 
-    # subgraphs
-    interfaces:
-        build: ./interfaces
-        volumes:
-            - subgraphs_data:/subgraphs
-        depends_on:
-            - mongo
-        env_file:
-            - ./.env
-            - ./interfaces/.env
+  # subgraphs
+  interfaces:
+    image: cc-interfaces:latest
+    volumes:
+      - subgraphs_data:/subgraphs
+    depends_on:
+      - mongo
+    env_file:
+      - $CC_CONFIG_PATH/prod/global
+      - $CC_CONFIG_PATH/prod/interfaces
 
-    clubs:
-        build: ./clubs
-        volumes:
-            - subgraphs_data:/subgraphs
-        depends_on:
-            - mongo
-        env_file:
-            - ./.env
+  clubs:
+    image: cc-clubs:latest
+    volumes:
+      - subgraphs_data:/subgraphs
+    depends_on:
+      - mongo
+    env_file:
+      - $CC_CONFIG_PATH/prod/global
 
-    events:
-        build: ./events
-        volumes:
-            - subgraphs_data:/subgraphs
-        depends_on:
-            - mongo
-        env_file:
-            - ./.env
+  events:
+    image: cc-events:latest
+    volumes:
+      - subgraphs_data:/subgraphs
+    depends_on:
+      - mongo
+    env_file:
+      - $CC_CONFIG_PATH/prod/global
 
-    users:
-        build: ./users
-        volumes:
-            - subgraphs_data:/subgraphs
-        depends_on:
-            - mongo
-        env_file:
-            - ./.env
+  users:
+    image: cc-users:latest
+    volumes:
+      - subgraphs_data:/subgraphs
+    depends_on:
+      - mongo
+    env_file:
+      - $CC_CONFIG_PATH/prod/global
