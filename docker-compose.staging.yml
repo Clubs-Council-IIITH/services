@@ -13,15 +13,15 @@ services:
     volumes:
       - /mnt/share/mongo_stage:/data/db
     env_file:
-      - ./.env
+      - $CC_CONFIG_PATH/staging/global
 
   gateway:
     image: cc-gateway:latest
     volumes:
       - subgraphs_data:/subgraphs
     env_file:
-      - ./.env
-      - ./gateway/.env
+      - $CC_CONFIG_PATH/staging/global
+      - $CC_CONFIG_PATH/staging/gateway
     depends_on:
       - interfaces
       - clubs
@@ -54,7 +54,7 @@ services:
     depends_on:
       - mongo
     env_file:
-      - ./.env
+      - $CC_CONFIG_PATH/staging/global
 
   web:
     image: cc-web:latest
@@ -62,16 +62,16 @@ services:
   auth:
     image: cc-auth:latest
     env_file:
-      - ./.env
-      - ./auth/.env
+      - $CC_CONFIG_PATH/staging/global
+      - $CC_CONFIG_PATH/staging/auth
 
   files:
     image: cc-files:latest
     volumes:
       - /mnt/share/files1:/files
     env_file:
-      - ./.env
-      - ./files/.env
+      - $CC_CONFIG_PATH/staging/global
+      - $CC_CONFIG_PATH/staging/files
 
   # subgraphs
   interfaces:
@@ -81,8 +81,8 @@ services:
     depends_on:
       - mongo
     env_file:
-      - ./.env
-      - ./interfaces/.env
+      - $CC_CONFIG_PATH/staging/global
+      - $CC_CONFIG_PATH/staging/interfaces
 
   clubs:
     image: cc-clubs:latest
@@ -91,7 +91,7 @@ services:
     depends_on:
       - mongo
     env_file:
-      - ./.env
+      - $CC_CONFIG_PATH/staging/global
 
   events:
     image: cc-events:latest
@@ -100,7 +100,7 @@ services:
     depends_on:
       - mongo
     env_file:
-      - ./.env
+      - $CC_CONFIG_PATH/staging/global
 
   users:
     image: cc-users:latest
@@ -109,4 +109,4 @@ services:
     depends_on:
       - mongo
     env_file:
-      - ./.env
+      - $CC_CONFIG_PATH/staging/global
