@@ -1,0 +1,14 @@
+[
+  {
+    "uid": "prabhakar",
+    "roles": [{ "name": "SLO Head", "startYear": 2019, "endYear": null }]
+  },
+  {
+    "uid": "vamsi.krishna",
+    "roles": [{ "name": "Member", "startYear": 2023, "endYear": null }]
+  },
+  {
+    "uid": "akhil.a",
+    "roles": [{ "name": "Member", "startYear": 2021, "endYear": 2023 }]
+  }
+]

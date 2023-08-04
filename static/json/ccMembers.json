@@ -1,0 +1,85 @@
+[
+  {
+    "uid": "bhav.beri",
+    "roles": [
+      { "name": "Secretary", "startYear": 2023, "endYear": null },
+      { "name": "Undersecretary", "startYear": 2022, "endYear": 2023 }
+    ]
+  },
+  {
+    "uid": "vrinda.agarwal",
+    "roles": [
+      { "name": "Secretary", "startYear": 2023, "endYear": null },
+      { "name": "Undersecretary", "startYear": 2022, "endYear": 2023 }
+    ]
+  },
+  {
+    "uid": "gnaneswar.kulindala",
+    "roles": [
+      { "name": "Joint Secretary", "startYear": 2023, "endYear": null },
+      { "name": "Undersecretary", "startYear": 2022, "endYear": 2023 }
+    ]
+  },
+  {
+    "uid": "mihika.sanghi",
+    "roles": [
+      { "name": "Joint Secretary", "startYear": 2023, "endYear": null },
+      { "name": "Undersecretary", "startYear": 2022, "endYear": 2023 }
+    ]
+  },
+  {
+    "uid": "aanvik.bhatnagar",
+    "roles": [{ "name": "Undersecretary", "startYear": 2023, "endYear": null }]
+  },
+  {
+    "uid": "agrim.mittal",
+    "roles": [{ "name": "Undersecretary", "startYear": 2023, "endYear": null }]
+  },
+  {
+    "uid": "divij.d",
+    "roles": [{ "name": "Undersecretary", "startYear": 2023, "endYear": null }]
+  },
+  {
+    "uid": "kartik.vij",
+    "roles": [{ "name": "Undersecretary", "startYear": 2023, "endYear": null }]
+  },
+  {
+    "uid": "ketaki.shetye",
+    "roles": [{ "name": "Undersecretary", "startYear": 2023, "endYear": null }]
+  },
+  {
+    "uid": "prabhav.shetty",
+    "roles": [{ "name": "Undersecretary", "startYear": 2023, "endYear": null }]
+  },
+  {
+    "uid": "shailender.goyal",
+    "roles": [{ "name": "Undersecretary", "startYear": 2023, "endYear": null }]
+  },
+  {
+    "uid": "shrikara.a",
+    "roles": [{ "name": "Undersecretary", "startYear": 2023, "endYear": null }]
+  },
+  {
+    "uid": "hariharan.k",
+    "roles": [
+      { "name": "Advisor", "startYear": 2023, "endYear": null },
+      { "name": "Secretary", "startYear": 2022, "endYear": 2023 },
+      { "name": "Undersecretary", "startYear": 2021, "endYear": 2022 }
+    ]
+  },
+  {
+    "uid": "radheshyam.t",
+    "roles": [
+      { "name": "Advisor", "startYear": 2023, "endYear": null },
+      { "name": "Secretary", "startYear": 2022, "endYear": 2023 },
+      { "name": "Undersecretary", "startYear": 2021, "endYear": 2022 }
+    ]
+  },
+  {
+    "uid": "naren.akash",
+    "roles": [
+      { "name": "Advisor", "startYear": 2021, "endYear": null },
+      { "name": "Secretary", "startYear": 2019, "endYear": 2021 }
+    ]
+  }
+]

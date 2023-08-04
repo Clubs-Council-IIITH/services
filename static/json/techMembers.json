@@ -1,0 +1,18 @@
+[
+  {
+    "uid": "vishva.saravanan",
+    "roles": [{ "name": "Tech Team Lead", "startYear": 2020, "endYear": null }]
+  },
+  {
+    "uid": "mihir.r",
+    "roles": [{ "name": "Tech Team Member", "startYear": 2021, "endYear": null }]
+  },
+  {
+    "uid": "bhav.beri",
+    "roles": [{ "name": "Tech Team Member", "startYear": 2022, "endYear": null }]
+  },
+  {
+    "uid": "anirudh.vempati",
+    "roles": [{ "name": "Tech Team Member", "startYear": 2023, "endYear": null }]
+  }
+]

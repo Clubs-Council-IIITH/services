@@ -1,0 +1,10 @@
+{
+  "production": {
+    "commit": "<placeholder_commit_hash>",
+    "timestamp": "1970-01-01T00:00:00"
+  },
+  "staging": {
+    "commit": "<placeholder_commit_hash>",
+    "timestamp": "1970-01-01T00:00:00"
+  }
+}

@@ -1,0 +1,77 @@
+[
+  {
+    "uid": "radhika.mamidi",
+    "roles": [
+      {
+        "name": "Student Affairs Committee Chair",
+        "startYear": 2021,
+        "endYear": null
+      }
+    ]
+  },
+  {
+    "uid": "tapan.sau",
+    "roles": [
+      {
+        "name": "Student Life Committee Chair",
+        "startYear": 2021,
+        "endYear": null
+      },
+      {
+        "name": "Anti-Ragging Commitee Chair",
+        "startYear": 2018,
+        "endYear": null
+      }
+    ]
+  },
+  {
+    "uid": "priyanka.srivastava",
+    "roles": [
+      {
+        "name": "Mental Health Coordinator",
+        "startYear": 2023,
+        "endYear": null
+      }
+    ]
+  },
+  {
+    "uid": "vinod.pk",
+    "roles": [
+      {
+        "name": "Sports Chair",
+        "startYear": 2020,
+        "endYear": null
+      }
+    ]
+  },
+  {
+    "uid": "pkreddy",
+    "roles": [
+      {
+        "name": "Council of Wardens Chair",
+        "startYear": 2018,
+        "endYear": null
+      }
+    ]
+  },
+  {
+    "uid": "radhika.krishnan",
+    "roles": [
+      {
+        "name": "Mess Committee Chair",
+        "startYear": 2021,
+        "endYear": null
+      }
+    ]
+  },
+  {
+    "uid": "prabhakar",
+    "roles": [
+      {
+        "name": "SLO Head",
+        "startYear": 2019,
+        "endYear": null
+      }
+    ]
+  }
+]

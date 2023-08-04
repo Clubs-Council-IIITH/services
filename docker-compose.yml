@@ -39,7 +39,7 @@ services:
     image: nginx:1.23-alpine
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - ./static_files:/usr/share/nginx
+      - ./static:/usr/share/nginx
     ports:
       - 80:80
     depends_on:
