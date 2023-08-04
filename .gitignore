@@ -8,5 +8,5 @@ service-template/
 web-old/
 
 # these static files are built at deployment time
-static/json/status.json
-static/mdx/logs.mdx
+./static/json/status.json
+./static/mdx/logs.mdx
