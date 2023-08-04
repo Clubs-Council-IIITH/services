@@ -5,7 +5,3 @@
 data/
 hooks/
 web-old/
-
-# these static files are built at deployment time
-./static/json/status.json
-./static/mdx/logs.mdx

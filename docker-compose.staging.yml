@@ -29,12 +29,9 @@ services:
       - users
 
   nginx:
-    image: nginx:1.23-alpine
+    build: ./nginx
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - ./static:/usr/share/nginx
-    expose:
-      - 80
     depends_on:
       - auth
       - files
