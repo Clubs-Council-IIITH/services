@@ -55,6 +55,7 @@ services:
       - mongo
     env_file:
       - $CC_CONFIG_PATH/prod/global
+    restart: no
 
   web:
     image: cc-web:latest

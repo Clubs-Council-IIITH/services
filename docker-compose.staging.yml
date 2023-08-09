@@ -55,7 +55,7 @@ services:
       - mongo
     env_file:
       - $CC_CONFIG_PATH/staging/global
-    restart: unless-stopped
+    restart: no
 
   web:
     image: cc-web:latest
