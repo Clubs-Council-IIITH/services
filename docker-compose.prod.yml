@@ -14,6 +14,7 @@ services:
       - /mnt/share/mongo_stage:/data/db
     env_file:
       - $CC_CONFIG_PATH/prod/global
+    restart: unless-stopped
 
   gateway:
     image: cc-gateway:latest
@@ -27,6 +28,7 @@ services:
       - clubs
       - events
       - users
+    restart: unless-stopped
 
   nginx:
     build: ./nginx
@@ -43,6 +45,7 @@ services:
     networks:
       - default
       - reverse_proxy
+    restart: unless-stopped
 
   feeder:
     image: cc-feeder:latest
@@ -57,12 +60,14 @@ services:
     image: cc-web:latest
     env_file:
       - $CC_CONFIG_PATH/prod/web
+    restart: unless-stopped
 
   auth:
     image: cc-auth:latest
     env_file:
       - $CC_CONFIG_PATH/prod/global
       - $CC_CONFIG_PATH/prod/auth
+    restart: unless-stopped
 
   files:
     image: cc-files:latest
@@ -71,6 +76,7 @@ services:
     env_file:
       - $CC_CONFIG_PATH/prod/global
       - $CC_CONFIG_PATH/prod/files
+    restart: unless-stopped
 
   # subgraphs
   interfaces:
@@ -82,6 +88,7 @@ services:
     env_file:
       - $CC_CONFIG_PATH/prod/global
       - $CC_CONFIG_PATH/prod/interfaces
+    restart: unless-stopped
 
   clubs:
     image: cc-clubs:latest
@@ -91,6 +98,7 @@ services:
       - mongo
     env_file:
       - $CC_CONFIG_PATH/prod/global
+    restart: unless-stopped
 
   events:
     image: cc-events:latest
@@ -100,6 +108,7 @@ services:
       - mongo
     env_file:
       - $CC_CONFIG_PATH/prod/global
+    restart: unless-stopped
 
   users:
     image: cc-users:latest
@@ -109,3 +118,4 @@ services:
       - mongo
     env_file:
       - $CC_CONFIG_PATH/prod/global
+    restart: unless-stopped
