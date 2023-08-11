@@ -47,15 +47,6 @@ services:
       - gateway
       - web
 
-  feeder:
-    build: ./feeder
-    volumes:
-      - ./data:/data
-    depends_on:
-      - mongo
-    env_file:
-      - ./.env
-
   web:
     build:
       context: ./web
@@ -67,36 +58,36 @@ services:
     env_file:
       - ./web/.env
 
-  # services
+  # apis
   auth:
-    build: ./auth-dev
+    build: ./apis/auth-dev
     volumes:
-      - ./auth-dev:/app
+      - ./apis/auth-dev:/app
     env_file:
       - ./.env
-      - ./auth-dev/.env
+      - ./apis/auth-dev/.env
 
   files:
-    build: ./files
+    build: ./apis/files
     volumes:
       - ./.mounted/files:/files
     env_file:
       - ./.env
-      - ./files/.env
+      - ./apis/files/.env
 
   # subgraphs
   interfaces:
-    build: ./interfaces
+    build: ./subgraphs/interfaces
     volumes:
       - subgraphs_data:/subgraphs
     depends_on:
       - mongo
     env_file:
       - ./.env
-      - ./interfaces/.env
+      - ./subgraphs/interfaces/.env
 
   clubs:
-    build: ./clubs
+    build: ./subgraphs/clubs
     volumes:
       - subgraphs_data:/subgraphs
     depends_on:
@@ -105,7 +96,7 @@ services:
       - ./.env
 
   events:
-    build: ./events
+    build: ./subgraphs/events
     volumes:
       - subgraphs_data:/subgraphs
     depends_on:
@@ -114,7 +105,7 @@ services:
       - ./.env
 
   users:
-    build: ./users
+    build: ./subgraphs/users
     volumes:
       - subgraphs_data:/subgraphs
     depends_on:

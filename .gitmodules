@@ -4,3 +4,24 @@
 [submodule "web"]
 	path = web
 	url = git@github.com:Clubs-Council-IIITH/web.git
+[submodule "apis/auth"]
+	path = apis/auth
+	url = git@github.com:Clubs-Council-IIITH/auth.git
+[submodule "apis/auth-dev"]
+	path = apis/auth-dev
+	url = git@github.com:Clubs-Council-IIITH/auth-dev.git
+[submodule "apis/files"]
+	path = apis/files
+	url = git@github.com:Clubs-Council-IIITH/files.git
+[submodule "subgraphs/clubs"]
+	path = subgraphs/clubs
+	url = git@github.com:Clubs-Council-IIITH/clubs.git
+[submodule "subgraphs/events"]
+	path = subgraphs/events
+	url = git@github.com:Clubs-Council-IIITH/events.git
+[submodule "subgraphs/interfaces"]
+	path = subgraphs/interfaces
+	url = git@github.com:Clubs-Council-IIITH/interfaces.git
+[submodule "subgraphs/users"]
+	path = subgraphs/users
+	url = git@github.com:Clubs-Council-IIITH/users.git
