@@ -11,7 +11,7 @@ services:
   mongo:
     image: mongo:4.4.18
     volumes:
-      - /mnt/share/mongo_stage:/data/db
+      - /mnt/share/mongo:/data/db
     env_file:
       - $CC_CONFIG_PATH/prod/global
     restart: unless-stopped
