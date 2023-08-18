@@ -8,10 +8,10 @@ services:
     image: mongo:4.4.18
     volumes:
       - ./.mounted/mongo:/data/db
-    ports:
-      - 27017:27017
     env_file:
       - ./.env
+    ports:
+      - 27017:27017
 
   mongo-express:
     image: mongo-express:latest
