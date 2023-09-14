@@ -39,8 +39,8 @@ services:
     build: ./nginx
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - /home/clubs/static_files:/usr/share/nginx
       - ./nginx/static:/usr/share/nginx
+      - ./static_files:/usr/share/nginx/others
     ports:
       - 80:80
     depends_on:
