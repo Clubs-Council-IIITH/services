@@ -34,6 +34,7 @@ services:
     build: ./nginx
     volumes:
       - ./nginx:/etc/nginx/conf.d
+      - ~/static:/usr/share/static
     depends_on:
       - auth
       - files
