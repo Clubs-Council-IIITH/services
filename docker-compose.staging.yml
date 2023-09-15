@@ -34,7 +34,6 @@ services:
     build: ./nginx
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - ./nginx/static:/usr/share/nginx
       - /home/clubs/static_files:/usr/share/nginx/others
     depends_on:
       - auth

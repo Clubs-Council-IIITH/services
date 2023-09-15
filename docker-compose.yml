@@ -39,7 +39,6 @@ services:
     build: ./nginx
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - ./nginx/static:/usr/share/nginx
       - ./static_files:/usr/share/nginx/others
     ports:
       - 80:80
