@@ -39,6 +39,7 @@ services:
     build: ./nginx
     volumes:
       - ./nginx:/etc/nginx/conf.d
+      - ./static_files:/usr/share/nginx/others
     ports:
       - 80:80
     depends_on:

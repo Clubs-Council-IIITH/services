@@ -5,3 +5,5 @@
 data/
 hooks/
 web-old/
+images/
+static_files/*
