@@ -10,7 +10,13 @@
     ]
   },
   {
-    "uid": "Dileepkumar.adari",
+    "uid": "dileepkumar.adari",
+    "roles": [
+      { "name": "Tech Team Member", "startYear": 2023, "endYear": null }
+    ]
+  },
+  {
+    "uid": "arjun.dosajh",
     "roles": [
       { "name": "Tech Team Member", "startYear": 2023, "endYear": null }
     ]
