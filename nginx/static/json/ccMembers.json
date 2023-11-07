@@ -62,7 +62,7 @@
   {
     "uid": "hariharan.k",
     "roles": [
-      { "name": "Advisor", "startYear": 2023, "endYear": null },
+      { "name": "Secretary Emeritus & Advisor", "startYear": 2023, "endYear": null },
       { "name": "Secretary", "startYear": 2022, "endYear": 2023 },
       { "name": "Undersecretary", "startYear": 2021, "endYear": 2022 }
     ]
@@ -70,7 +70,7 @@
   {
     "uid": "radheshyam.t",
     "roles": [
-      { "name": "Advisor", "startYear": 2023, "endYear": null },
+      { "name": "Secretary Emeritus & Advisor", "startYear": 2023, "endYear": null },
       { "name": "Secretary", "startYear": 2022, "endYear": 2023 },
       { "name": "Undersecretary", "startYear": 2021, "endYear": 2022 }
     ]
@@ -78,7 +78,7 @@
   {
     "uid": "naren.akash",
     "roles": [
-      { "name": "Advisor", "startYear": 2021, "endYear": null },
+      { "name": "Secretary Emeritus & Advisor", "startYear": 2021, "endYear": null },
       { "name": "Secretary", "startYear": 2019, "endYear": 2021 }
     ]
   }
