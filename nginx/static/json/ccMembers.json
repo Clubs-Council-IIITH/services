@@ -62,7 +62,7 @@
   {
     "uid": "hariharan.k",
     "roles": [
-      { "name": "Secretary Emeritus & Advisor", "startYear": 2023, "endYear": null },
+      { "name": "Advisor", "startYear": 2023, "endYear": null },
       { "name": "Secretary", "startYear": 2022, "endYear": 2023 },
       { "name": "Undersecretary", "startYear": 2021, "endYear": 2022 }
     ]
@@ -70,7 +70,7 @@
   {
     "uid": "radheshyam.t",
     "roles": [
-      { "name": "Secretary Emeritus & Advisor", "startYear": 2023, "endYear": null },
+      { "name": "Advisor", "startYear": 2023, "endYear": null },
       { "name": "Secretary", "startYear": 2022, "endYear": 2023 },
       { "name": "Undersecretary", "startYear": 2021, "endYear": 2022 }
     ]
