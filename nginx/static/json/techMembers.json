@@ -34,6 +34,12 @@
     ]
   },
   {
+    "uid": "sambu.aneesh",
+    "roles": [
+      { "name": "Tech Team Member", "startYear": 2024, "endYear": null }
+    ]
+  },
+  {
     "uid": "mihir.r",
     "roles": [
       { "name": "Tech Team Member", "startYear": 2021, "endYear": 2023 }
