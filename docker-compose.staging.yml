@@ -48,15 +48,15 @@ services:
       - reverse_proxy
     restart: unless-stopped
 
-  feeder:
-    image: cc-feeder:latest
-    volumes:
-      - ./data:/data
-    depends_on:
-      - mongo
-    env_file:
-      - $CC_CONFIG_PATH/staging/global
-    restart: no
+  # feeder:
+  #   image: cc-feeder:latest
+  #   volumes:
+  #     - ./data:/data
+  #   depends_on:
+  #     - mongo
+  #   env_file:
+  #     - $CC_CONFIG_PATH/staging/global
+  #   restart: no
 
   web:
     image: cc-web:latest
