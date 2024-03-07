@@ -2,7 +2,7 @@
 
 # Check if exactly one argument is provided
 if [ $# -ne 1 ]; then
-    echo "Usage: $0 [prod|staging|submodules]"
+    echo "Usage: $0 [prod|staging|submodules|github]"
     exit 1
 fi
 
@@ -14,7 +14,11 @@ case "$1" in
         git push prod master:staging
         ;;
     submodules)
-        git submodule foreach "git push prod; git push"
+        git submodule foreach "git push prod master"
+        ;;
+    github)
+        git submodule foreach "git push origin master"
+        git push origin master
         ;;
     *)
         echo "Error: The parameter must be 'prod', 'staging', or 'submodules'"
