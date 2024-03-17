@@ -21,7 +21,7 @@ case "$1" in
         git push origin master
         ;;
     *)
-        echo "Error: The parameter must be 'prod', 'staging', or 'submodules'"
+        echo "Error: The parameter must be 'prod', 'staging', 'github', or 'submodules'"
         exit 1
         ;;
 esac
