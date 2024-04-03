@@ -9,7 +9,7 @@ services:
     volumes:
       - ./.mounted/mongo:/data/db
     env_file:
-      - ./.env
+      - ./.env.example
     ports:
       - 27017:27017
 
@@ -20,15 +20,15 @@ services:
     depends_on:
       - mongo
     env_file:
-      - ./.env
+      - ./.env.example
 
   gateway:
     build: ./gateway
     volumes:
       - subgraphs_data:/subgraphs
     env_file:
-      - ./.env
-      - ./gateway/.env
+      - ./.env.example
+      - ./gateway/.env.example
     depends_on:
       - interfaces
       - clubs
@@ -57,7 +57,7 @@ services:
     volumes:
       - ./web:/web
     env_file:
-      - ./web/.env
+      - ./web/.env.example
 
   # apis
   auth:
@@ -65,16 +65,16 @@ services:
     volumes:
       - ./apis/auth-dev:/app
     env_file:
-      - ./.env
-      - ./apis/auth-dev/.env
+      - ./.env.example
+      - ./apis/auth-dev/.env.example
 
   files:
     build: ./apis/files
     volumes:
       - ./.mounted/files:/files
     env_file:
-      - ./.env
-      - ./apis/files/.env
+      - ./.env.example
+      - ./apis/files/.env.example
 
   # subgraphs
   interfaces:
@@ -84,8 +84,8 @@ services:
     depends_on:
       - mongo
     env_file:
-      - ./.env
-      - ./subgraphs/interfaces/.env
+      - ./.env.example
+      - ./subgraphs/interfaces/.env.example
 
   clubs:
     build: ./subgraphs/clubs
@@ -94,7 +94,7 @@ services:
     depends_on:
       - mongo
     env_file:
-      - ./.env
+      - ./.env.example
 
   events:
     build: ./subgraphs/events
@@ -103,7 +103,7 @@ services:
     depends_on:
       - mongo
     env_file:
-      - ./.env
+      - ./.env.example
 
   users:
     build: ./subgraphs/users
@@ -112,6 +112,6 @@ services:
     depends_on:
       - mongo
     env_file:
-      - ./.env
+      - ./.env.example
     dns:
       - 10.4.20.204
