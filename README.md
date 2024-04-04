@@ -1,32 +1,32 @@
 # Services
 
-Configurations for services and containers.
- 
+Configurations for services and containers for the Clubs Council Website.
+
 ## Setup
-- Clone the main repository and submodules:
+
+- Clone the main repository and submodules (make sure your SSH-key has access to private repos too):
+
 ```
 git clone -j8 --recurse-submodules --remote-submodules git@github.com:Clubs-Council-IIITH/services.git
-make pull
+cd services
 ```
 
-- Run initialization script:
+## Testing
+
+- To test in local machine run the following script which runs the micro-services in foreground.
+
 ```
-make init
+docker compose up --build
 ```
 
-- Build and spin up all services:
+- To run the service locally in background, run the following script:
+
 ```
-make
+docker compose up --build -d
 ```
 
-> For other setup options (automated setup) and data files, please visit the [data repository](https://github.com/Clubs-Council-IIITH/data)
+- To stop the service, run the following script:
 
-## Using the development makefile
-- `make`: Spin up all services.
-- `make init`: Initialize project directory.
-- `make start S="<service1> <service2> ..."`: Start specified services.
-- `make stop S="<service1> <service2> ..."`: Stop specified services.
-- `make clean`: Bring down all services and clear volumes and orphans.
-- `make logs S="<service1> <service2>"`: Show logs of specified services.
-- `make ps`: Show status for all containers of this project.
-Pass `ENV=prod` to switch to the production environment.
+```
+docker compose down
+```
