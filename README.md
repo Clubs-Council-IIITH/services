@@ -14,5 +14,9 @@ cd services
 
 ## Testing
 
-- To test in local machine run the `run.sh` script which runs the micro-services
+- To test in local machine run the following script which runs the micro-services
   in foreground.
+
+```
+docker compose up --build
+```
