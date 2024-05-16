@@ -25,3 +25,6 @@
 [submodule "subgraphs/users"]
 	path = subgraphs/users
 	url = git@github.com:Clubs-Council-IIITH/users.git
+[submodule "subgraphs/members"]
+	path = subgraphs/members
+	url = git@github.com:Clubs-Council-IIITH/members.git

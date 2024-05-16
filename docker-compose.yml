@@ -32,6 +32,7 @@ services:
     depends_on:
       - interfaces
       - clubs
+      - members
       - events
       - users
 
@@ -89,6 +90,15 @@ services:
 
   clubs:
     build: ./subgraphs/clubs
+    volumes:
+      - subgraphs_data:/subgraphs
+    depends_on:
+      - mongo
+    env_file:
+      - ./.env.example
+
+  members:
+    build: ./subgraphs/members
     volumes:
       - subgraphs_data:/subgraphs
     depends_on:

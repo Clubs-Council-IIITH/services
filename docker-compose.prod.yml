@@ -26,6 +26,7 @@ services:
     depends_on:
       - interfaces
       - clubs
+      - members
       - events
       - users
     restart: unless-stopped
@@ -94,6 +95,16 @@ services:
 
   clubs:
     image: cc-clubs:latest
+    volumes:
+      - subgraphs_data:/subgraphs
+    depends_on:
+      - mongo
+    env_file:
+      - $CC_CONFIG_PATH/prod/global
+    restart: unless-stopped
+
+  members:
+    image: cc-members:latest
     volumes:
       - subgraphs_data:/subgraphs
     depends_on:
