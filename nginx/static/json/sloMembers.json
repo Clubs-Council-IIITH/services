@@ -8,6 +8,10 @@
     "roles": [{ "name": "Member", "startYear": 2023, "endYear": null }]
   },
   {
+    "uid": "poojitha.akula",
+    "roles": [{ "name": "Member", "startYear": 2024, "endYear": null }]
+  },
+  {
     "uid": "akhil.a",
     "roles": [{ "name": "Member", "startYear": 2021, "endYear": 2023 }]
   }
