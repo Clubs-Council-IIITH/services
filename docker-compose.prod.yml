@@ -35,7 +35,6 @@ services:
     build: ./nginx
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - /home/clubs/static_files:/usr/share/nginx/others
     depends_on:
       - auth
       - files
@@ -76,6 +75,7 @@ services:
     image: cc-files:latest
     volumes:
       - /mnt/share/files1:/files
+      - /home/clubs/static_files:/static_files
     env_file:
       - $CC_CONFIG_PATH/prod/global
       - $CC_CONFIG_PATH/prod/files

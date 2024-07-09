@@ -40,7 +40,6 @@ services:
     build: ./nginx
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - ./static_files:/usr/share/nginx/others
     ports:
       - 80:80
     depends_on:
@@ -73,6 +72,7 @@ services:
     build: ./apis/files
     volumes:
       - ./.mounted/files:/files
+      - ./static_files:/static_files
     env_file:
       - ./.env.example
       - ./apis/files/.env.example
