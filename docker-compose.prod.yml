@@ -19,7 +19,7 @@ services:
   gateway:
     image: cc-gateway:latest
     volumes:
-      - subgraphs_data:/subgraphs
+      - subgraphs_data:/subgraphs:ro
     env_file:
       - $CC_CONFIG_PATH/prod/global
       - $CC_CONFIG_PATH/prod/gateway
@@ -75,7 +75,7 @@ services:
     image: cc-files:latest
     volumes:
       - /mnt/share/files1:/files
-      - /home/clubs/static_files:/static_files
+      - /home/clubs/static_files:/static_files:ro
     env_file:
       - $CC_CONFIG_PATH/prod/global
       - $CC_CONFIG_PATH/prod/files
