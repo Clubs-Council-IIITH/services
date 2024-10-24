@@ -55,6 +55,7 @@ services:
     volumes:
       - ./web:/web
     env_file:
+      - ./.env.example
       - ./web/.env.example
 
   # apis

@@ -61,6 +61,7 @@ services:
   web:
     image: cc-web:latest
     env_file:
+      - $CC_CONFIG_PATH/staging/global
       - $CC_CONFIG_PATH/staging/web
     restart: unless-stopped
 
