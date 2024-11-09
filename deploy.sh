@@ -2,11 +2,15 @@
 
 # Check if exactly one argument is provided
 if [ $# -ne 1 ]; then
-    echo "Usage: $0 [prod|staging|submodules|github]"
+    echo "Usage: $0 [setup|prod|staging|submodules|github]"
     exit 1
 fi
 
 case "$1" in
+    setup)
+        chmod +x .scripts/deploy-setup.sh
+        ./.scripts/deploy-setup.sh
+        ;;
     prod)
         git push prod master:prod
         ;;
