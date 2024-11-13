@@ -21,8 +21,8 @@ case "$1" in
         git submodule foreach "git push prod master"
         ;;
     github)
-        git submodule foreach "git push origin master"
-        git push origin master
+        git submodule foreach "git push origin master; git remote prune origin"
+        git push origin master; git remote prune origin
         ;;
     *)
         echo "Error: The parameter must be 'prod', 'staging', 'github', or 'submodules'"
