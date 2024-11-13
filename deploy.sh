@@ -25,7 +25,7 @@ case "$1" in
         git push origin master; git remote prune origin
         ;;
     *)
-        echo "Error: The parameter must be 'prod', 'staging', 'github', or 'submodules'"
+        echo "Error: The parameter must be 'setup', 'prod', 'staging', 'github', or 'submodules'"
         exit 1
         ;;
 esac
