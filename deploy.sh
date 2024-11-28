@@ -18,7 +18,7 @@ case "$1" in
         git push prod master:staging
         ;;
     submodules)
-        git submodule foreach "git push prod master"
+        git submodule foreach '[ "$path" = "apis/auth-dev" ] || git push prod master'
         ;;
     github)
         git submodule foreach "git push origin master; git remote prune origin"
