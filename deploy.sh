@@ -9,7 +9,11 @@ fi
 case "$1" in
     setup)
         chmod +x .scripts/deploy-setup.sh
+        chmod +x .scripts/gitlab-setup.sh
+        echo $'\nSetting up deploy remotes...'
         ./.scripts/deploy-setup.sh
+        echo $'\nSetting up gitlab remotes...'
+        ./.scripts/gitlab-setup.sh
         ;;
     prod)
         git push prod master:prod
@@ -23,6 +27,10 @@ case "$1" in
     github)
         git submodule foreach "git push origin master; git remote prune origin"
         git push origin master; git remote prune origin
+        ;;
+    gitlab)
+        git submodule foreach '[ "$path" = "apis/files" ] || git push gitlab master'
+        git push gitlab master
         ;;
     *)
         echo "Error: The parameter must be 'setup', 'prod', 'staging', 'github', or 'submodules'"

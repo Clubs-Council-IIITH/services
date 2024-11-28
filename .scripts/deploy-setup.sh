@@ -9,6 +9,7 @@ prod_url_interfaces="git@clubs.iiit.ac.in:interfaces.git"
 prod_url_members="git@clubs.iiit.ac.in:members.git"
 prod_url_users="git@clubs.iiit.ac.in:users.git"
 prod_url_web="git@clubs.iiit.ac.in:web.git"
+prod_url_services="git@clubs.iiit.ac.in:services.git"
 
 # Export URLs as environment variables for access within submodule foreach
 export prod_url_auth prod_url_files prod_url_gateway prod_url_clubs
@@ -47,3 +48,13 @@ git submodule foreach '
     echo "No prod URL specified for $sm_path."
   fi
 '
+
+echo "Entering base repository 'services'"
+
+# Add remote to base repository
+if ! git remote | grep -q "^prod$"; then
+  git remote add prod "$prod_url_services"
+  echo "Added prod remote for services: $prod_url_services"
+else
+  echo "Prod remote already exists for services."
+fi
