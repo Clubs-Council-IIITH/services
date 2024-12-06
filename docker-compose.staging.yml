@@ -15,6 +15,10 @@ services:
     env_file:
       - $CC_CONFIG_PATH/staging/global
     restart: unless-stopped
+    ports:
+      - 27017:27017
+    command: >
+      mongod --config $CC_CONFIG_PATH/prod/mongod.conf
 
   gateway:
     image: cc-gateway:latest
