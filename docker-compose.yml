@@ -63,6 +63,7 @@ services:
     build: ./apis/auth-dev
     volumes:
       - ./apis/auth-dev:/app
+      - ./config:/app/config
     env_file:
       - ./.env.example
       - ./apis/auth-dev/.env.example
@@ -72,6 +73,7 @@ services:
     volumes:
       - ./.mounted/files:/files
       - ./static_files:/static_files:ro
+      - ./config:/app/config
     env_file:
       - ./.env.example
       - ./apis/files/.env.example
@@ -81,6 +83,7 @@ services:
     build: ./subgraphs/interfaces
     volumes:
       - subgraphs_data:/subgraphs
+      - ./config:/app/config
     depends_on:
       - mongo
     env_file:
@@ -91,6 +94,7 @@ services:
     build: ./subgraphs/clubs
     volumes:
       - subgraphs_data:/subgraphs
+      - ./config:/app/config
     depends_on:
       - mongo
     env_file:
@@ -100,6 +104,7 @@ services:
     build: ./subgraphs/members
     volumes:
       - subgraphs_data:/subgraphs
+      - ./config:/app/config
     depends_on:
       - mongo
     env_file:
@@ -109,6 +114,7 @@ services:
     build: ./subgraphs/events
     volumes:
       - subgraphs_data:/subgraphs
+      - ./config:/app/config
     depends_on:
       - mongo
     env_file:
@@ -118,6 +124,7 @@ services:
     build: ./subgraphs/users
     volumes:
       - subgraphs_data:/subgraphs
+      - ./config:/app/config
     depends_on:
       - mongo
     env_file:
