@@ -70,6 +70,8 @@ services:
     env_file:
       - $CC_CONFIG_PATH/staging/global
       - $CC_CONFIG_PATH/staging/auth
+    volumes:
+      - ./config:/app/config
     restart: unless-stopped
 
   files:
@@ -77,6 +79,7 @@ services:
     volumes:
       - /mnt/share/files1:/files
       - /home/clubs/static_files:/static_files:ro
+      - ./config:/app/config
     env_file:
       - $CC_CONFIG_PATH/staging/global
       - $CC_CONFIG_PATH/staging/files
@@ -87,6 +90,7 @@ services:
     image: cc-interfaces:latest
     volumes:
       - subgraphs_data:/subgraphs
+      - ./config:/app/config
     depends_on:
       - mongo
     env_file:
@@ -98,6 +102,7 @@ services:
     image: cc-clubs:latest
     volumes:
       - subgraphs_data:/subgraphs
+      - ./config:/app/config
     depends_on:
       - mongo
     env_file:
@@ -108,6 +113,7 @@ services:
     image: cc-members:latest
     volumes:
       - subgraphs_data:/subgraphs
+      - ./config:/app/config
     depends_on:
       - mongo
     env_file:
@@ -118,6 +124,7 @@ services:
     image: cc-events:latest
     volumes:
       - subgraphs_data:/subgraphs
+      - ./config:/app/config
     depends_on:
       - mongo
     env_file:
@@ -128,6 +135,7 @@ services:
     image: cc-users:latest
     volumes:
       - subgraphs_data:/subgraphs
+      - ./config:/app/config
     depends_on:
       - mongo
     env_file:
