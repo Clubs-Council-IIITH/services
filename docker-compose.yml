@@ -55,7 +55,6 @@ services:
         - ENV=development
     volumes:
       - ./web:/web
-      - ./config:/config
     env_file:
       - ./.env.example
       - ./web/.env.example

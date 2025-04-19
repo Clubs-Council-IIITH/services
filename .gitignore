@@ -7,3 +7,4 @@ hooks/
 web-old/
 images/
 static_files/*
+.idea/
