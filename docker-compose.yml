@@ -73,6 +73,7 @@ services:
     volumes:
       - ./.mounted/files:/files
       - ./static_files:/static_files:ro
+      - ./config:/app/config
     env_file:
       - ./.env.example
       - ./apis/files/.env.example
