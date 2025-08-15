@@ -21,6 +21,8 @@ services:
     env_file:
       - $CC_CONFIG_PATH/prod/global
       - $CC_CONFIG_PATH/prod/gateway
+    env:
+      - NODE_ENV=production
     depends_on:
       - interfaces
       - clubs
