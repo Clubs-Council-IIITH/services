@@ -21,7 +21,7 @@ services:
     env_file:
       - $CC_CONFIG_PATH/staging/global
       - $CC_CONFIG_PATH/staging/gateway
-    env:
+    environment:
       - NODE_ENV=production
     depends_on:
       - interfaces
