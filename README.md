@@ -16,19 +16,19 @@ cd services
 - To test in local machine run the following script which runs the micro-services in foreground.
 
 ```bash
-docker compose up --build
+docker compose -p services up --build
 ```
 
 - To run the service locally in background, run the following script:
 
 ```bash
-docker compose up --build -d
+docker compose -p services up --build -d
 ```
 
 - To stop the service, run the following script:
 
 ```bash
-docker compose down
+docker compose -p services down
 ```
 
 ## Deployment
