@@ -11,8 +11,8 @@ services:
     restart: unless-stopped
 
   gateway:
-    # image: cc-gateway:latest
-    build: ./gateway
+    image: cc-gateway:latest
+    # build: ./gateway
     volumes:
       - subgraphs_data:/subgraphs:ro
     env_file:
@@ -55,17 +55,17 @@ services:
   #   restart: no
 
   web:
-    # image: cc-web:latest
-    build:
-      context: ./web
+    image: cc-web:latest
+    # build:
+    #   context: ./web
     env_file:
       - $CC_CONFIG_PATH/prod/global
       - $CC_CONFIG_PATH/prod/web
     restart: unless-stopped
 
   auth:
-    # image: cc-auth:latest
-    build: ./apis/auth
+    image: cc-auth:latest
+    # build: ./apis/auth
     env_file:
       - $CC_CONFIG_PATH/prod/global
       - $CC_CONFIG_PATH/prod/auth
@@ -74,8 +74,8 @@ services:
     restart: unless-stopped
 
   files:
-    # image: cc-files:latest
-    build: ./apis/files
+    image: cc-files:latest
+    # build: ./apis/files
     volumes:
       - /mnt/share/files1:/files
       - /root/static_files:/static_files:ro
@@ -87,8 +87,8 @@ services:
 
   # subgraphs
   interfaces:
-    # image: cc-interfaces:latest
-    build: ./subgraphs/interfaces
+    image: cc-interfaces:latest
+    # build: ./subgraphs/interfaces
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
@@ -100,8 +100,8 @@ services:
     restart: unless-stopped
 
   clubs:
-    # image: cc-clubs:latest
-    build: ./subgraphs/clubs
+    image: cc-clubs:latest
+    # build: ./subgraphs/clubs
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
@@ -112,8 +112,8 @@ services:
     restart: unless-stopped
 
   members:
-    # image: cc-members:latest
-    build: ./subgraphs/members
+    image: cc-members:latest
+    # build: ./subgraphs/members
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
@@ -124,8 +124,8 @@ services:
     restart: unless-stopped
 
   events:
-    # image: cc-events:latest
-    build: ./subgraphs/events
+    image: cc-events:latest
+    # build: ./subgraphs/events
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
@@ -136,8 +136,8 @@ services:
     restart: unless-stopped
 
   users:
-    # image: cc-users:latest
-    build: ./subgraphs/users
+    image: cc-users:latest
+    # build: ./subgraphs/users
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
