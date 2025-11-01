@@ -1,13 +1,6 @@
 volumes:
   subgraphs_data:
 
-networks:
-  reverse_proxy:
-    ipam:
-        config:
-          - subnet:  172.19.0.0/24
-#     external: true
-
 services:
   mongo:
     image: mongo:4.4
@@ -47,10 +40,8 @@ services:
     environment:
       - VIRTUAL_HOST=clubs.iiit.ac.in
       - LETSENCRYPT_HOST=clubs.iiit.ac.in
-    networks:
-      default:
-      reverse_proxy:
-          ipv4_address: 172.19.0.4
+    ports:
+      - "8000:80"
     restart: unless-stopped
 
   # feeder:
