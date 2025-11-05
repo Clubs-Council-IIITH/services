@@ -11,7 +11,7 @@ services:
     restart: unless-stopped
 
   gateway:
-    image: cc-gateway:latest
+    image: cc-gateway:${IMAGE_TAG_GATEWAY:-latest}
     # build: ./gateway
     volumes:
       - subgraphs_data:/subgraphs:ro
@@ -45,7 +45,8 @@ services:
     restart: unless-stopped
 
   # feeder:
-  #   image: cc-feeder:latest
+  #   image: cc-feeder:${IMAGE_TAG_FEEDER:-latest}
+  #   build: ./feeder
   #   volumes:
   #     - ./data:/data
   #   depends_on:
@@ -55,7 +56,7 @@ services:
   #   restart: no
 
   web:
-    image: cc-web:latest
+    image: cc-web:${IMAGE_TAG_WEB:-latest}
     # build:
     #   context: ./web
     env_file:
@@ -64,7 +65,7 @@ services:
     restart: unless-stopped
 
   auth:
-    image: cc-auth:latest
+    image: cc-auth:${IMAGE_TAG_AUTH:-latest}
     # build: ./apis/auth
     env_file:
       - $CC_CONFIG_PATH/prod/global
@@ -74,7 +75,7 @@ services:
     restart: unless-stopped
 
   files:
-    image: cc-files:latest
+    image: cc-files:${IMAGE_TAG_FILES:-latest}
     # build: ./apis/files
     volumes:
       - /mnt/share/files1:/files
@@ -87,7 +88,7 @@ services:
 
   # subgraphs
   interfaces:
-    image: cc-interfaces:latest
+    image: cc-interfaces:${IMAGE_TAG_INTERFACES:-latest}
     # build: ./subgraphs/interfaces
     volumes:
       - subgraphs_data:/subgraphs
@@ -100,7 +101,7 @@ services:
     restart: unless-stopped
 
   clubs:
-    image: cc-clubs:latest
+    image: cc-clubs:${IMAGE_TAG_CLUBS:-latest}
     # build: ./subgraphs/clubs
     volumes:
       - subgraphs_data:/subgraphs
@@ -112,7 +113,7 @@ services:
     restart: unless-stopped
 
   members:
-    image: cc-members:latest
+    image: cc-members:${IMAGE_TAG_MEMBERS:-latest}
     # build: ./subgraphs/members
     volumes:
       - subgraphs_data:/subgraphs
@@ -124,7 +125,7 @@ services:
     restart: unless-stopped
 
   events:
-    image: cc-events:latest
+    image: cc-events:${IMAGE_TAG_EVENTS:-latest}
     # build: ./subgraphs/events
     volumes:
       - subgraphs_data:/subgraphs
@@ -136,7 +137,7 @@ services:
     restart: unless-stopped
 
   users:
-    image: cc-users:latest
+    image: cc-users:${IMAGE_TAG_USERS:-latest}
     # build: ./subgraphs/users
     volumes:
       - subgraphs_data:/subgraphs

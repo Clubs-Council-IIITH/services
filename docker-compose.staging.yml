@@ -1,10 +1,6 @@
 volumes:
   subgraphs_data:
 
-networks:
-  reverse_proxy:
-    external: true
-
 services:
   mongo:
     image: mongo:4.4
@@ -15,7 +11,7 @@ services:
     restart: unless-stopped
 
   gateway:
-    image: cc-gateway:latest
+    image: cc-gateway:${IMAGE_TAG_GATEWAY:-latest}
     volumes:
       - subgraphs_data:/subgraphs:ro
     env_file:
@@ -43,13 +39,12 @@ services:
     environment:
       - VIRTUAL_HOST=dev.clubs.iiit.ac.in
       # - LETSENCRYPT_HOST=clubs.iiit.ac.in
-    networks:
-      - default
-      - reverse_proxy
+    ports:
+      - "9000:80"
     restart: unless-stopped
 
   # feeder:
-  #   image: cc-feeder:latest
+  #   image: cc-feeder:${IMAGE_TAG_FEEDER:-latest}
   #   volumes:
   #     - ./data:/data
   #   depends_on:
@@ -59,14 +54,14 @@ services:
   #   restart: no
 
   web:
-    image: cc-web:latest
+    image: cc-web:${IMAGE_TAG_WEB:-latest}
     env_file:
       - $CC_CONFIG_PATH/staging/global
       - $CC_CONFIG_PATH/staging/web
     restart: unless-stopped
 
   auth:
-    image: cc-auth:latest
+    image: cc-auth:${IMAGE_TAG_AUTH:-latest}
     env_file:
       - $CC_CONFIG_PATH/staging/global
       - $CC_CONFIG_PATH/staging/auth
@@ -75,10 +70,10 @@ services:
     restart: unless-stopped
 
   files:
-    image: cc-files:latest
+    image: cc-files:${IMAGE_TAG_FILES:-latest}
     volumes:
       - /mnt/share/files1:/files
-      - /home/clubs/static_files:/static_files:ro
+      - /root/static_files:/static_files:ro
       - ./config:/app/config
     env_file:
       - $CC_CONFIG_PATH/staging/global
@@ -87,7 +82,7 @@ services:
 
   # subgraphs
   interfaces:
-    image: cc-interfaces:latest
+    image: cc-interfaces:${IMAGE_TAG_INTERFACES:-latest}
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
@@ -99,7 +94,7 @@ services:
     restart: unless-stopped
 
   clubs:
-    image: cc-clubs:latest
+    image: cc-clubs:${IMAGE_TAG_CLUBS:-latest}
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
@@ -110,7 +105,7 @@ services:
     restart: unless-stopped
 
   members:
-    image: cc-members:latest
+    image: cc-members:${IMAGE_TAG_MEMBERS:-latest}
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
@@ -121,7 +116,7 @@ services:
     restart: unless-stopped
 
   events:
-    image: cc-events:latest
+    image: cc-events:${IMAGE_TAG_EVENTS:-latest}
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
@@ -132,7 +127,7 @@ services:
     restart: unless-stopped
 
   users:
-    image: cc-users:latest
+    image: cc-users:${IMAGE_TAG_USERS:-latest}
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
