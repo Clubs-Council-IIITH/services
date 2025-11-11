@@ -72,7 +72,7 @@ services:
   files:
     image: cc-files:${IMAGE_TAG_FILES:-latest}
     volumes:
-      - /mnt/share/files1:/files
+      - /mnt/share/files-staging:/files
       - /root/static_files:/static_files:ro
       - ./config:/app/config
     env_file:
