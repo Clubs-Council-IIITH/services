@@ -8,8 +8,8 @@ fi
 
 case "$1" in
     pull)
-        git submodule foreach "git pull origin master"
-        git pull origin master
+        git submodule foreach "git pull origin master; git remote prune origin"
+        git pull origin master; git remote prune origin
         ;;
     push)
         git submodule foreach "git push origin master"
