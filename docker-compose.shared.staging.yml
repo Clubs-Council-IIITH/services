@@ -1,5 +1,3 @@
-version: "3.8"
-
 networks:
   cc-shared-network:
     name: cc-staging-shared-network
