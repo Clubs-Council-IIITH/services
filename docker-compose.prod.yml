@@ -1,15 +1,12 @@
+networks:
+  cc-shared-network:
+    external: true
+    name: cc-prod-shared-network
+
 volumes:
   subgraphs_data:
 
 services:
-  mongo:
-    image: mongo:4.4
-    volumes:
-      - /mnt/share/mongo:/data/db
-    env_file:
-      - $CC_CONFIG_PATH/prod/global
-    restart: unless-stopped
-
   gateway:
     # image: cc-gateway:${IMAGE_TAG_GATEWAY:-latest}
     build: ./gateway
@@ -26,34 +23,15 @@ services:
       - members
       - events
       - users
+    networks:
+      - cc-shared-network
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"require('http').get('http://localhost:80/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})\""]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 60s
     restart: unless-stopped
-
-  nginx:
-    build: ./nginx
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-    depends_on:
-      - auth
-      - files
-      - gateway
-      - web
-    environment:
-      - VIRTUAL_HOST=clubs.iiit.ac.in
-      - LETSENCRYPT_HOST=clubs.iiit.ac.in
-    ports:
-      - "8000:80"
-    restart: unless-stopped
-
-  # feeder:
-  #   image: cc-feeder:${IMAGE_TAG_FEEDER:-latest}
-  #   build: ./feeder
-  #   volumes:
-  #     - ./data:/data
-  #   depends_on:
-  #     - mongo
-  #   env_file:
-  #     - $CC_CONFIG_PATH/prod/global
-  #   restart: no
 
   web:
     image: cc-web:${IMAGE_TAG_WEB:-latest}
@@ -62,6 +40,8 @@ services:
     env_file:
       - $CC_CONFIG_PATH/prod/global
       - $CC_CONFIG_PATH/prod/web
+    networks:
+      - cc-shared-network
     restart: unless-stopped
 
   auth:
@@ -72,6 +52,8 @@ services:
       - $CC_CONFIG_PATH/prod/auth
     volumes:
       - ./config:/app/config
+    networks:
+      - cc-shared-network
     restart: unless-stopped
 
   files:
@@ -84,6 +66,8 @@ services:
     env_file:
       - $CC_CONFIG_PATH/prod/global
       - $CC_CONFIG_PATH/prod/files
+    networks:
+      - cc-shared-network
     restart: unless-stopped
 
   # subgraphs
@@ -93,11 +77,11 @@ services:
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
-    depends_on:
-      - mongo
     env_file:
       - $CC_CONFIG_PATH/prod/global
       - $CC_CONFIG_PATH/prod/interfaces
+    networks:
+      - cc-shared-network
     restart: unless-stopped
 
   clubs:
@@ -106,10 +90,10 @@ services:
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
-    depends_on:
-      - mongo
     env_file:
       - $CC_CONFIG_PATH/prod/global
+    networks:
+      - cc-shared-network
     restart: unless-stopped
 
   members:
@@ -118,10 +102,10 @@ services:
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
-    depends_on:
-      - mongo
     env_file:
       - $CC_CONFIG_PATH/prod/global
+    networks:
+      - cc-shared-network
     restart: unless-stopped
 
   events:
@@ -130,10 +114,10 @@ services:
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
-    depends_on:
-      - mongo
     env_file:
       - $CC_CONFIG_PATH/prod/global
+    networks:
+      - cc-shared-network
     restart: unless-stopped
 
   users:
@@ -142,8 +126,8 @@ services:
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
-    depends_on:
-      - mongo
     env_file:
       - $CC_CONFIG_PATH/prod/global
+    networks:
+      - cc-shared-network
     restart: unless-stopped
