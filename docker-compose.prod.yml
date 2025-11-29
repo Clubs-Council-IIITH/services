@@ -11,8 +11,8 @@ services:
     restart: unless-stopped
 
   gateway:
-    image: cc-gateway:${IMAGE_TAG_GATEWAY:-latest}
-    # build: ./gateway
+    # image: cc-gateway:${IMAGE_TAG_GATEWAY:-latest}
+    build: ./gateway
     volumes:
       - subgraphs_data:/subgraphs:ro
     env_file:
