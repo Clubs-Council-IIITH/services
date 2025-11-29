@@ -1,0 +1,30 @@
+version: "3.8"
+
+networks:
+  cc-shared-network:
+    name: cc-staging-shared-network
+    driver: bridge
+
+services:
+  mongo:
+    image: mongo:4.4
+    volumes:
+      - /mnt/share/mongo_stage:/data/db
+    env_file:
+      - $CC_CONFIG_PATH/staging/global
+    networks:
+      - cc-shared-network
+    restart: unless-stopped
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    environment:
+      - VIRTUAL_HOST=dev-clubs.iiit.ac.in
+      # - LETSENCRYPT_HOST=clubs.iiit.ac.in
+    ports:
+      - "9000:80"
+    networks:
+      - cc-shared-network
+    restart: unless-stopped
