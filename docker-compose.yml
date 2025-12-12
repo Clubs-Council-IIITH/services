@@ -27,6 +27,12 @@ services:
     env_file:
       - ./.env.example
       - ./gateway/.env.example
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"require('http').get('http://localhost:80/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})\""]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 60s
     depends_on:
       - interfaces
       - clubs
