@@ -1,15 +1,12 @@
+networks:
+  cc-shared-network:
+    external: true
+    name: cc-staging-shared-network
+
 volumes:
   subgraphs_data:
 
 services:
-  mongo:
-    image: mongo:4.4
-    volumes:
-      - /mnt/share/mongo_stage:/data/db
-    env_file:
-      - $CC_CONFIG_PATH/staging/global
-    restart: unless-stopped
-
   gateway:
     # image: cc-gateway:${IMAGE_TAG_GATEWAY:-latest}
     build: ./gateway
@@ -26,39 +23,23 @@ services:
       - members
       - events
       - users
+    networks:
+      - cc-shared-network
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"require('http').get('http://localhost:80/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})\""]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 60s
     restart: unless-stopped
-
-  nginx:
-    build: ./nginx
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-    depends_on:
-      - auth
-      - files
-      - gateway
-      - web
-    environment:
-      - VIRTUAL_HOST=dev.clubs.iiit.ac.in
-      # - LETSENCRYPT_HOST=clubs.iiit.ac.in
-    ports:
-      - "9000:80"
-    restart: unless-stopped
-
-  # feeder:
-  #   image: cc-feeder:${IMAGE_TAG_FEEDER:-latest}
-  #   volumes:
-  #     - ./data:/data
-  #   depends_on:
-  #     - mongo
-  #   env_file:
-  #     - $CC_CONFIG_PATH/staging/global
-  #   restart: no
 
   web:
     image: cc-web:${IMAGE_TAG_WEB:-latest}
     env_file:
       - $CC_CONFIG_PATH/staging/global
       - $CC_CONFIG_PATH/staging/web
+    networks:
+      - cc-shared-network
     restart: unless-stopped
 
   auth:
@@ -68,6 +49,8 @@ services:
       - $CC_CONFIG_PATH/staging/auth
     volumes:
       - ./config:/app/config
+    networks:
+      - cc-shared-network
     restart: unless-stopped
 
   files:
@@ -79,6 +62,8 @@ services:
     env_file:
       - $CC_CONFIG_PATH/staging/global
       - $CC_CONFIG_PATH/staging/files
+    networks:
+      - cc-shared-network
     restart: unless-stopped
 
   # subgraphs
@@ -87,11 +72,11 @@ services:
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
-    depends_on:
-      - mongo
     env_file:
       - $CC_CONFIG_PATH/staging/global
       - $CC_CONFIG_PATH/staging/interfaces
+    networks:
+      - cc-shared-network
     restart: unless-stopped
 
   clubs:
@@ -99,10 +84,10 @@ services:
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
-    depends_on:
-      - mongo
     env_file:
       - $CC_CONFIG_PATH/staging/global
+    networks:
+      - cc-shared-network
     restart: unless-stopped
 
   members:
@@ -110,10 +95,10 @@ services:
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
-    depends_on:
-      - mongo
     env_file:
       - $CC_CONFIG_PATH/staging/global
+    networks:
+      - cc-shared-network
     restart: unless-stopped
 
   events:
@@ -121,10 +106,10 @@ services:
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
-    depends_on:
-      - mongo
     env_file:
       - $CC_CONFIG_PATH/staging/global
+    networks:
+      - cc-shared-network
     restart: unless-stopped
 
   users:
@@ -132,8 +117,8 @@ services:
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
-    depends_on:
-      - mongo
     env_file:
       - $CC_CONFIG_PATH/staging/global
+    networks:
+      - cc-shared-network
     restart: unless-stopped

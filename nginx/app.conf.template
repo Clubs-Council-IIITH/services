@@ -1,0 +1,85 @@
+upstream auth {
+    server ${PROJECT_NAME}-auth-1;
+}
+
+upstream files {
+    server ${PROJECT_NAME}-files-1;
+}
+
+upstream graphql {
+    server ${PROJECT_NAME}-gateway-1;
+}
+
+upstream web {
+    server ${PROJECT_NAME}-web-1;
+}
+
+js_path "/etc/nginx/conf.d";
+js_import http.js;
+
+js_set $gallery_index     http.gallery_index;
+js_set $version http.version;
+
+server {
+    listen 80;
+    server_name ${VIRTUAL_HOST};
+    client_max_body_size 100M;
+
+    location ~ ^/(login|logout|logoutCallback) {
+        proxy_pass http://auth$request_uri;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_redirect off;
+    }
+
+    location /files {
+        proxy_pass http://files$request_uri;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_redirect off;
+    }
+
+    location /graphql {
+        proxy_pass http://graphql$request_uri;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_redirect off;
+    }
+
+    error_page 404 /custom_404.html;
+    location = /custom_404.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+
+    error_page 500 502 503 504 /custom_50x.html;
+    location = /custom_50x.html {
+        root /usr/share/nginx/html;
+        internal;
+    }
+
+    location ~ ^/static/(.*)$ {
+        # expires off;
+        # expires 1h;
+        expires -1;
+        root /usr/share/nginx;
+        try_files /$1 /others/$1 /$1/ /others/$1/ =404;
+    }
+
+    # ignore cache frontend
+    location ~* (service-worker\.js)$ {
+        add_header 'Cache-Control' 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0';
+        expires off;
+        proxy_no_cache 1;
+    }
+    
+    location / {
+        proxy_pass http://web$request_uri;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
