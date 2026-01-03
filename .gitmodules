@@ -28,3 +28,6 @@
 [submodule "subgraphs/members"]
 	path = subgraphs/members
 	url = git@github.com:Clubs-Council-IIITH/members.git
+[submodule "apis/auth-wrapper"]
+	path = apis/auth-wrapper
+	url = git@github.com:Clubs-Council-IIITH/auth-wrapper.git

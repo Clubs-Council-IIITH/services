@@ -70,6 +70,16 @@ services:
       - ./config:/app/config
     restart: unless-stopped
 
+  auth-wrapper:
+    build: apis/auth-wrapper
+    container_name: auth-wrapper
+    env_file:
+      - $CC_CONFIG_PATH/staging/global
+      - $CC_CONFIG_PATH/staging/auth-wrapper
+    volumes:
+      - ./apis/auth-wrapper/whitelist.txt:/app/whitelist.txt:ro
+    restart: unless-stopped
+
   files:
     image: cc-files:${IMAGE_TAG_FILES:-latest}
     volumes:
