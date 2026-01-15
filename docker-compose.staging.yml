@@ -11,8 +11,7 @@ services:
     restart: unless-stopped
 
   gateway:
-    # image: cc-gateway:${IMAGE_TAG_GATEWAY:-latest}
-    build: ./gateway
+    image: cc-gateway:${IMAGE_TAG_GATEWAY:-latest}
     volumes:
       - subgraphs_data:/subgraphs:ro
     env_file:
@@ -31,7 +30,9 @@ services:
   nginx:
     build: ./nginx
     volumes:
-      - ./nginx:/etc/nginx/conf.d
+      - ./nginx/app-staging.conf:/etc/nginx/conf.d/app.conf:ro
+      - ./nginx/scripts:/etc/nginx/scripts:ro
+      - ./nginx/static:/usr/share/nginx/static:ro
     depends_on:
       - auth
       - files
@@ -71,8 +72,7 @@ services:
     restart: unless-stopped
 
   auth-wrapper:
-    build: apis/auth-wrapper
-    container_name: auth-wrapper
+    image: cc-auth-wrapper:${IMAGE_TAG_AUTH_WRAPPER:-latest}
     env_file:
       - $CC_CONFIG_PATH/staging/global
       - $CC_CONFIG_PATH/staging/auth-wrapper
