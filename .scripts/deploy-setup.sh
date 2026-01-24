@@ -14,7 +14,8 @@ prod_url_web="git@clubs.iiit.ac.in:web.git"
 prod_url_services="git@clubs.iiit.ac.in:services.git"
 
 # Export URLs as environment variables for access within submodule foreach
-export prod_url_auth prod_url_files prod_url_gateway prod_url_clubs
+export prod_url_auth prod_url_auth_wrapper prod_url_auth_dev
+export prod_url_files prod_url_gateway prod_url_clubs
 export prod_url_events prod_url_interfaces prod_url_members prod_url_users prod_url_web
 
 git submodule foreach '
