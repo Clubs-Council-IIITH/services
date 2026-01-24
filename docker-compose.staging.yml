@@ -77,8 +77,6 @@ services:
     env_file:
       - $CC_CONFIG_PATH/staging/global
       - $CC_CONFIG_PATH/staging/auth-wrapper
-    volumes:
-      - ./apis/auth-wrapper/whitelist.txt:/app/whitelist.txt:ro
     restart: unless-stopped
 
   files:
