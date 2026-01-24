@@ -22,8 +22,8 @@ git submodule foreach '
   # Determine the URL based on the submodule path
   case "$sm_path" in
     "apis/auth") url="$prod_url_auth" ;;
-    "apis/auth-wrapper") url="$prod_url_auth_wrapper" ;;
     "apis/auth-dev") url="$prod_url_auth_dev" ;;
+    "apis/auth-wrapper") url="$prod_url_auth_wrapper" ;;
     "apis/files") url="$prod_url_files" ;;
     "gateway") url="$prod_url_gateway" ;;
     "subgraphs/clubs") url="$prod_url_clubs" ;;
