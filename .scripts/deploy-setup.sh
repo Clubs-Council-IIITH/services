@@ -1,6 +1,8 @@
 #!/bin/bash
 
 prod_url_auth="git@clubs.iiit.ac.in:auth.git"
+prod_url_auth_wrapper="git@clubs.iiit.ac.in:auth-wrapper.git"
+prod_url_auth_dev="git@clubs.iiit.ac.in:auth-dev.git"
 prod_url_files="git@clubs.iiit.ac.in:files.git"
 prod_url_gateway="git@clubs.iiit.ac.in:gateway.git"
 prod_url_clubs="git@clubs.iiit.ac.in:clubs.git"
@@ -16,14 +18,11 @@ export prod_url_auth prod_url_files prod_url_gateway prod_url_clubs
 export prod_url_events prod_url_interfaces prod_url_members prod_url_users prod_url_web
 
 git submodule foreach '
-  if [ "$name" = "apis/auth-dev" ]; then
-    echo "Skipping auth-dev submodule."
-    exit 0
-  fi
-
   # Determine the URL based on the submodule path
   case "$sm_path" in
     "apis/auth") url="$prod_url_auth" ;;
+    "apis/auth-wrapper") url="$prod_url_auth_wrapper" ;;
+    "apis/auth-dev") url="$prod_url_auth_dev" ;;
     "apis/files") url="$prod_url_files" ;;
     "gateway") url="$prod_url_gateway" ;;
     "subgraphs/clubs") url="$prod_url_clubs" ;;
