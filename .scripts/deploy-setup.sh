@@ -3,20 +3,23 @@
 prod_url_auth="git@clubs.iiit.ac.in:auth.git"
 prod_url_auth_wrapper="git@clubs.iiit.ac.in:auth-wrapper.git"
 prod_url_auth_dev="git@clubs.iiit.ac.in:auth-dev.git"
+
 prod_url_files="git@clubs.iiit.ac.in:files.git"
 prod_url_gateway="git@clubs.iiit.ac.in:gateway.git"
+prod_url_web="git@clubs.iiit.ac.in:web.git"
+
 prod_url_clubs="git@clubs.iiit.ac.in:clubs.git"
 prod_url_events="git@clubs.iiit.ac.in:events.git"
 prod_url_interfaces="git@clubs.iiit.ac.in:interfaces.git"
 prod_url_members="git@clubs.iiit.ac.in:members.git"
 prod_url_users="git@clubs.iiit.ac.in:users.git"
-prod_url_web="git@clubs.iiit.ac.in:web.git"
+
 prod_url_services="git@clubs.iiit.ac.in:services.git"
 
 # Export URLs as environment variables for access within submodule foreach
 export prod_url_auth prod_url_auth_wrapper prod_url_auth_dev
-export prod_url_files prod_url_gateway prod_url_clubs
-export prod_url_events prod_url_interfaces prod_url_members prod_url_users prod_url_web
+export prod_url_files prod_url_gateway prod_url_web
+export prod_url_clubs prod_url_events prod_url_interfaces prod_url_members prod_url_users
 
 git submodule foreach '
   # Determine the URL based on the submodule path

@@ -31,9 +31,7 @@ services:
   nginx:
     build: ./nginx
     volumes:
-      - ./nginx/app-staging.conf:/etc/nginx/conf.d/app.conf:ro
-      - ./nginx/scripts:/etc/nginx/scripts:ro
-      - ./nginx/static:/usr/share/nginx/static:ro
+      - ./nginx:/etc/nginx/conf.d
     depends_on:
       - auth
       - files
@@ -41,9 +39,15 @@ services:
       - web
     environment:
       - VIRTUAL_HOST=dev.clubs.iiit.ac.in
-      # - LETSENCRYPT_HOST=clubs.iiit.ac.in
     ports:
       - "9000:80"
+    restart: unless-stopped
+
+  auth-wrapper:
+    image: cc-auth-wrapper:${IMAGE_TAG_AUTH_WRAPPER:-latest}
+    env_file:
+      - $CC_CONFIG_PATH/staging/global
+      - $CC_CONFIG_PATH/staging/auth-wrapper
     restart: unless-stopped
 
   # feeder:
@@ -70,13 +74,6 @@ services:
       - $CC_CONFIG_PATH/staging/auth
     volumes:
       - ./config:/app/config
-    restart: unless-stopped
-
-  auth-wrapper:
-    image: cc-auth-wrapper:${IMAGE_TAG_AUTH_WRAPPER:-latest}
-    env_file:
-      - $CC_CONFIG_PATH/staging/global
-      - $CC_CONFIG_PATH/staging/auth-wrapper
     restart: unless-stopped
 
   files:
