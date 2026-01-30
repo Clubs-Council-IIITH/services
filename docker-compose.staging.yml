@@ -31,7 +31,9 @@ services:
   nginx:
     build: ./nginx
     volumes:
-      - ./nginx:/etc/nginx/conf.d
+      - ./nginx/app-staging.conf:/etc/nginx/conf.d/app.conf:ro
+      - ./nginx/scripts:/etc/nginx/scripts:ro
+      - ./nginx/static:/usr/share/nginx/static:ro
     depends_on:
       - auth
       - files
