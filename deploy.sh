@@ -2,7 +2,7 @@
 
 # Check if exactly one argument is provided
 if [ $# -ne 1 ]; then
-    echo "Usage: $0 [setup|prod|staging|submodules|github|gitlab]"
+    echo "Usage: $0 [setup|prod|staging|submodules|github|gitlab|pull]"
     exit 1
 fi
 
@@ -31,6 +31,10 @@ case "$1" in
     gitlab)
         git submodule foreach '[ "$path" = "apis/files" ] || git push gitlab master'
         git push gitlab master
+        ;;
+    pull)
+        git submodule foreach "git pull origin master; git remote prune origin"
+        git pull origin master; git remote prune origin
         ;;
     *)
         echo "Error: The parameter must be 'setup', 'prod', 'staging', 'github', or 'submodules'"
