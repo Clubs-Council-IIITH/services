@@ -49,10 +49,7 @@ services:
   web:
     build:
       context: ./web
-      dockerfile: Dockerfile
       target: dev
-      args:
-        - ENV=development
     volumes:
       - ./web:/web
     env_file:
