@@ -51,9 +51,7 @@ services:
   web:
     build:
       context: ./web
-      dockerfile: dev.Dockerfile
-      args:
-        - ENV=development
+      target: dev
     volumes:
       - ./web:/web
     env_file:
