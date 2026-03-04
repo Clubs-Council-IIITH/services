@@ -5,7 +5,7 @@ services:
   mongo:
     image: mongo:4.4
     volumes:
-      - /mnt/share/mongo:/data/db
+      - $STORAGE_MOUNT/mongo:/data/db
     env_file:
       - $CC_CONFIG_PATH/prod/global
     restart: unless-stopped
@@ -29,7 +29,7 @@ services:
     restart: unless-stopped
 
   nginx:
-    build: 
+    build:
       context: ./nginx
       target: prod
     depends_on:
@@ -72,16 +72,16 @@ services:
       - $CC_CONFIG_PATH/prod/global
       - $CC_CONFIG_PATH/prod/auth
     volumes:
-      - /mnt/share/config:/app/config
+      - $STORAGE_MOUNT/logging_config:/app/config
     restart: unless-stopped
 
   files:
     image: cc-files:${IMAGE_TAG_FILES:-latest}
     # build: ./apis/files
     volumes:
-      - /mnt/share/files1:/files
-      - /mnt/share/static_files:/static_files:ro
-      - /mnt/share/config:/app/config
+      - $STORAGE_MOUNT/files1:/files
+      - $STORAGE_MOUNT/static_files:/static_files:ro
+      - $STORAGE_MOUNT/logging_config:/app/config
     env_file:
       - $CC_CONFIG_PATH/prod/global
       - $CC_CONFIG_PATH/prod/files
@@ -93,7 +93,7 @@ services:
     # build: ./subgraphs/interfaces
     volumes:
       - subgraphs_data:/subgraphs
-      - /mnt/share/config:/app/config
+      - $STORAGE_MOUNT/logging_config:/app/config
     depends_on:
       - mongo
     env_file:
@@ -106,7 +106,7 @@ services:
     # build: ./subgraphs/clubs
     volumes:
       - subgraphs_data:/subgraphs
-      - /mnt/share/config:/app/config
+      - $STORAGE_MOUNT/logging_config:/app/config
     depends_on:
       - mongo
     env_file:
@@ -118,7 +118,7 @@ services:
     # build: ./subgraphs/members
     volumes:
       - subgraphs_data:/subgraphs
-      - /mnt/share/config:/app/config
+      - $STORAGE_MOUNT/logging_config:/app/config
     depends_on:
       - mongo
     env_file:
@@ -130,7 +130,7 @@ services:
     # build: ./subgraphs/events
     volumes:
       - subgraphs_data:/subgraphs
-      - /mnt/share/config:/app/config
+      - $STORAGE_MOUNT/logging_config:/app/config
     depends_on:
       - mongo
     env_file:
@@ -142,7 +142,7 @@ services:
     # build: ./subgraphs/users
     volumes:
       - subgraphs_data:/subgraphs
-      - /mnt/share/config:/app/config
+      - $STORAGE_MOUNT/logging_config:/app/config
     depends_on:
       - mongo
     env_file:
