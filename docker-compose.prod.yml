@@ -135,6 +135,7 @@ services:
       - mongo
     env_file:
       - $CC_CONFIG_PATH/prod/global
+      - $CC_CONFIG_PATH/prod/events
     restart: unless-stopped
 
   users:
