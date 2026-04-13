@@ -31,7 +31,23 @@ docker compose -p services up --build -d
 docker compose -p services down
 ```
 
+## Preparing for Deployment
+
+Make sure all the submodules are upto date, once you pull all the latest changes in the individual submodules.
+```sh
+git submodule update --remote --merge --recursive
+```
+
+Then, to make services point to the newest submodule
+commits:
+```sh
+git add .
+git commit -m "Update Submodules"
+git push
+```
+
 ## Deployment
+
 
 To run deployment related tasks, run the following script:
 
