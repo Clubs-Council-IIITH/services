@@ -35,7 +35,7 @@ services:
       - users
 
   nginx:
-    build: 
+    build:
       context: ./nginx
       target: prod
     ports:
@@ -127,5 +127,13 @@ services:
       - mongo
     env_file:
       - ./.env.example
-    dns:
-      - 10.4.20.204
+
+  items:
+    build: ./subgraphs/items
+    volumes:
+      - subgraphs_data:/subgraphs
+      - ./config:/app/config
+    depends_on:
+      - mongo
+    env_file:
+      - ./.env.example
