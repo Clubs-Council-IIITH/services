@@ -121,6 +121,7 @@ services:
   users:
     build: ./subgraphs/users
     volumes:
+      - ./subgraphs/users:/app
       - subgraphs_data:/subgraphs
       - ./config:/app/config
     depends_on:
