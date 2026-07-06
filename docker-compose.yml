@@ -80,6 +80,7 @@ services:
   interfaces:
     build: ./subgraphs/interfaces
     volumes:
+      - ./subgraphs/interfaces:/app
       - subgraphs_data:/subgraphs
       - ./config:/app/config
     depends_on:
@@ -91,6 +92,7 @@ services:
   clubs:
     build: ./subgraphs/clubs
     volumes:
+      - ./subgraphs/clubs:/app
       - subgraphs_data:/subgraphs
       - ./config:/app/config
     depends_on:
@@ -101,6 +103,7 @@ services:
   members:
     build: ./subgraphs/members
     volumes:
+      - ./subgraphs/members:/app
       - subgraphs_data:/subgraphs
       - ./config:/app/config
     depends_on:
@@ -111,6 +114,7 @@ services:
   events:
     build: ./subgraphs/events
     volumes:
+      - ./subgraphs/events:/app
       - subgraphs_data:/subgraphs
       - ./config:/app/config
     depends_on:
