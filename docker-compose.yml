@@ -69,6 +69,7 @@ services:
   files:
     build: ./apis/files
     volumes:
+      - ./apis/files:/app
       - ./.mounted/files:/files
       - ./static_files:/static_files:ro
       - ./config:/app/config
