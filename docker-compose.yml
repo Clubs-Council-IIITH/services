@@ -129,3 +129,13 @@ services:
       - ./.env.example
     dns:
       - 10.4.20.204
+
+  achievements:
+    build: ./subgraphs/achievements
+    volumes:
+      - subgraphs_data:/subgraphs
+      - ./config:/app/config
+    depends_on:
+      - mongo
+    env_file:
+      - ./.env.example
