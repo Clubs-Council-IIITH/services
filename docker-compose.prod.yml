@@ -149,3 +149,15 @@ services:
     env_file:
       - $CC_CONFIG_PATH/prod/global
     restart: unless-stopped
+
+  achievements:
+    image: cc-achievements:${IMAGE_TAG_ACHIEVEMENTS:-latest}
+    # build: ./subgraphs/achievements
+    volumes:
+      - subgraphs_data:/subgraphs
+      - $STORAGE_MOUNT/logging_config:/app/config
+    depends_on:
+      - mongo
+    env_file:
+      - $CC_CONFIG_PATH/prod/global
+    restart: unless-stopped
