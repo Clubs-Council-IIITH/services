@@ -69,6 +69,7 @@ services:
   files:
     build: ./apis/files
     volumes:
+      - ./apis/files:/app
       - ./.mounted/files:/files
       - ./static_files:/static_files:ro
       - ./config:/app/config
@@ -80,6 +81,7 @@ services:
   interfaces:
     build: ./subgraphs/interfaces
     volumes:
+      - ./subgraphs/interfaces:/app
       - subgraphs_data:/subgraphs
       - ./config:/app/config
     depends_on:
@@ -91,6 +93,7 @@ services:
   clubs:
     build: ./subgraphs/clubs
     volumes:
+      - ./subgraphs/clubs:/app
       - subgraphs_data:/subgraphs
       - ./config:/app/config
     depends_on:
@@ -101,6 +104,7 @@ services:
   members:
     build: ./subgraphs/members
     volumes:
+      - ./subgraphs/members:/app
       - subgraphs_data:/subgraphs
       - ./config:/app/config
     depends_on:
@@ -111,6 +115,7 @@ services:
   events:
     build: ./subgraphs/events
     volumes:
+      - ./subgraphs/events:/app
       - subgraphs_data:/subgraphs
       - ./config:/app/config
     depends_on:
@@ -121,6 +126,7 @@ services:
   users:
     build: ./subgraphs/users
     volumes:
+      - ./subgraphs/users:/app
       - subgraphs_data:/subgraphs
       - ./config:/app/config
     depends_on:
