@@ -33,6 +33,8 @@ services:
       - members
       - events
       - users
+      - items
+      - transactions
 
   nginx:
     build:
@@ -130,6 +132,16 @@ services:
 
   items:
     build: ./subgraphs/items
+    volumes:
+      - subgraphs_data:/subgraphs
+      - ./config:/app/config
+    depends_on:
+      - mongo
+    env_file:
+      - ./.env.example
+
+  transactions:
+    build: ./subgraphs/transactions
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
