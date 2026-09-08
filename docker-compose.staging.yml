@@ -144,3 +144,14 @@ services:
     env_file:
       - $CC_CONFIG_PATH/staging/global
     restart: unless-stopped
+
+  achievements:
+    image: cc-users:${IMAGE_TAG_ACHIEVEMENTS:-latest}
+    volumes:
+      - subgraphs_data:/subgraphs
+      - $STORAGE_MOUNT/logging_config:/app/config
+    depends_on:
+      - mongo
+    env_file:
+      - $CC_CONFIG_PATH/staging/global
+    restart: unless-stopped

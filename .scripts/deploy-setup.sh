@@ -34,6 +34,7 @@ git submodule foreach '
     "subgraphs/interfaces") url="$prod_url_interfaces" ;;
     "subgraphs/members") url="$prod_url_members" ;;
     "subgraphs/users") url="$prod_url_users" ;;
+    "subgraphs/achievements") url="$prod_url_achievements" ;;
     "web") url="$prod_url_web" ;;
     *) url="" ;;
   esac
