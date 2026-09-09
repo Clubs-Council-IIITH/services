@@ -21,6 +21,7 @@ prod_url_services="git@clubs.iiit.ac.in:services.git"
 export prod_url_auth prod_url_auth_wrapper prod_url_auth_dev
 export prod_url_files prod_url_gateway prod_url_web
 export prod_url_clubs prod_url_events prod_url_interfaces prod_url_members prod_url_users
+export prod_url_achievements
 
 git submodule foreach '
   # Determine the URL based on the submodule path
