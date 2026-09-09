@@ -26,6 +26,7 @@ services:
       - members
       - events
       - users
+      - achievements
     restart: unless-stopped
 
   nginx:

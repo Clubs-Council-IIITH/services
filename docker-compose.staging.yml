@@ -26,6 +26,7 @@ services:
       - members
       - events
       - users
+      - achievements
     restart: unless-stopped
 
   nginx:
@@ -146,7 +147,7 @@ services:
     restart: unless-stopped
 
   achievements:
-    image: cc-users:${IMAGE_TAG_ACHIEVEMENTS:-latest}
+    image: cc-achievements:${IMAGE_TAG_ACHIEVEMENTS:-latest}
     volumes:
       - subgraphs_data:/subgraphs
       - $STORAGE_MOUNT/logging_config:/app/config

@@ -33,6 +33,7 @@ services:
       - members
       - events
       - users
+      - achievements
 
   nginx:
     build: 
