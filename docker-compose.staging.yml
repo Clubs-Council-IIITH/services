@@ -3,7 +3,7 @@ volumes:
 
 services:
   mongo:
-    image: mongo:4.4
+    image: mongo:8.0
     volumes:
       - $STORAGE_MOUNT/mongo_stage:/data/db
     env_file:
