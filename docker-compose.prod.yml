@@ -9,7 +9,7 @@ services:
     env_file:
       - $CC_CONFIG_PATH/prod/global
     ports:
-      - "27017:27017"
+      - "127.0.0.1:27017:27017"
     restart: unless-stopped
 
   gateway:

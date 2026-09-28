@@ -63,3 +63,22 @@ with the following options:
 - `*` - To see the list of available options.
 
 _NOTE_: The above script assumes that you have the necessary permissions to deploy the services.
+
+## Connecting to mongo container using mongo compass
+
+Add a new connection, and then in advanced settings:
+* General Tab:
+    * Host: localhost (or 127.0.0.1)
+    * Port: 27017 (or 27018 for staging)
+* Authentication Tab:
+    * Fill username and password of the mongo container
+    * Host: localhost (or 127.0.0.1)
+    * Port: 27017 (or 27018 for staging)
+* Proxy/SSH Tunnel Tab:
+    * SSH Hostname: 10.10.32.47 (or clubs.iiit.ac.in)
+    * SSH Username: root
+    * SSH Identity File: /home/\<USERNAME\>/.ssh/id_ed25519
+
+
+![](img/mongo_compass_ssh.png)
+![](img/mongo_compass_auth.png)

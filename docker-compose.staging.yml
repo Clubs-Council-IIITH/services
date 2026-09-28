@@ -8,6 +8,8 @@ services:
       - $STORAGE_MOUNT/mongo_stage:/data/db
     env_file:
       - $CC_CONFIG_PATH/staging/global
+    ports:
+      - "127.0.0.1:27018:27017"
     restart: unless-stopped
 
   gateway:
