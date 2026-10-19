@@ -83,7 +83,7 @@ services:
     image: cc-files:${IMAGE_TAG_FILES:-latest}
     volumes:
       - $STORAGE_MOUNT/files-staging:/files
-      - $STORAGE_MOUNT/static_files:/static_files:ro
+      - $STORAGE_MOUNT/static_files:/static_files
       - $STORAGE_MOUNT/logging_config:/app/config
     env_file:
       - $CC_CONFIG_PATH/staging/global
