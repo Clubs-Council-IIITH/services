@@ -29,6 +29,8 @@ services:
       - events
       - users
       - achievements
+      - items
+      - transactions
     restart: unless-stopped
 
   nginx:
@@ -150,6 +152,28 @@ services:
 
   achievements:
     image: cc-achievements:${IMAGE_TAG_ACHIEVEMENTS:-latest}
+    volumes:
+      - subgraphs_data:/subgraphs
+      - $STORAGE_MOUNT/logging_config:/app/config
+    depends_on:
+      - mongo
+    env_file:
+      - $CC_CONFIG_PATH/staging/global
+    restart: unless-stopped
+
+  items:
+    build: ./subgraphs/items
+    volumes:
+      - subgraphs_data:/subgraphs
+      - $STORAGE_MOUNT/logging_config:/app/config
+    depends_on:
+      - mongo
+    env_file:
+      - $CC_CONFIG_PATH/staging/global
+    restart: unless-stopped
+
+  transactions:
+    build: ./subgraphs/transactions
     volumes:
       - subgraphs_data:/subgraphs
       - $STORAGE_MOUNT/logging_config:/app/config
