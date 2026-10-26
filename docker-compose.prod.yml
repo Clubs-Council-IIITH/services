@@ -3,11 +3,13 @@ volumes:
 
 services:
   mongo:
-    image: mongo:4.4
+    image: mongo:8.0
     volumes:
       - $STORAGE_MOUNT/mongo:/data/db
     env_file:
       - $CC_CONFIG_PATH/prod/global
+    ports:
+      - "127.0.0.1:27017:27017"
     restart: unless-stopped
 
   gateway:
@@ -26,6 +28,7 @@ services:
       - members
       - events
       - users
+      - achievements
     restart: unless-stopped
 
   nginx:
@@ -141,6 +144,18 @@ services:
   users:
     image: cc-users:${IMAGE_TAG_USERS:-latest}
     # build: ./subgraphs/users
+    volumes:
+      - subgraphs_data:/subgraphs
+      - $STORAGE_MOUNT/logging_config:/app/config
+    depends_on:
+      - mongo
+    env_file:
+      - $CC_CONFIG_PATH/prod/global
+    restart: unless-stopped
+
+  achievements:
+    image: cc-achievements:${IMAGE_TAG_ACHIEVEMENTS:-latest}
+    # build: ./subgraphs/achievements
     volumes:
       - subgraphs_data:/subgraphs
       - $STORAGE_MOUNT/logging_config:/app/config

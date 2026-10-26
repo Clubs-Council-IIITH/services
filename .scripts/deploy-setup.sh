@@ -13,6 +13,7 @@ prod_url_events="git@clubs.iiit.ac.in:events.git"
 prod_url_interfaces="git@clubs.iiit.ac.in:interfaces.git"
 prod_url_members="git@clubs.iiit.ac.in:members.git"
 prod_url_users="git@clubs.iiit.ac.in:users.git"
+prod_url_achievements="git@clubs.iiit.ac.in:achievements.git"
 
 prod_url_services="git@clubs.iiit.ac.in:services.git"
 
@@ -20,6 +21,7 @@ prod_url_services="git@clubs.iiit.ac.in:services.git"
 export prod_url_auth prod_url_auth_wrapper prod_url_auth_dev
 export prod_url_files prod_url_gateway prod_url_web
 export prod_url_clubs prod_url_events prod_url_interfaces prod_url_members prod_url_users
+export prod_url_achievements
 
 git submodule foreach '
   # Determine the URL based on the submodule path
@@ -34,6 +36,7 @@ git submodule foreach '
     "subgraphs/interfaces") url="$prod_url_interfaces" ;;
     "subgraphs/members") url="$prod_url_members" ;;
     "subgraphs/users") url="$prod_url_users" ;;
+    "subgraphs/achievements") url="$prod_url_achievements" ;;
     "web") url="$prod_url_web" ;;
     *) url="" ;;
   esac
