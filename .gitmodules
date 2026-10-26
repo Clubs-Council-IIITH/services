@@ -34,3 +34,9 @@
 [submodule "subgraphs/achievements"]
 	path = subgraphs/achievements
 	url = git@github.com:Clubs-Council-IIITH/achievements.git
+[submodule "subgraphs/items"]
+	path = subgraphs/items
+	url = git@github.com:Clubs-Council-IIITH/items.git
+[submodule "subgraphs/transactions"]
+	path = subgraphs/transactions
+	url = git@github.com:Clubs-Council-IIITH/transactions.git

@@ -34,9 +34,11 @@ services:
       - events
       - users
       - achievements
+      - items
+      - transactions
 
   nginx:
-    build: 
+    build:
       context: ./nginx
       target: prod
     ports:
@@ -133,6 +135,26 @@ services:
 
   achievements:
     build: ./subgraphs/achievements
+    volumes:
+      - subgraphs_data:/subgraphs
+      - ./config:/app/config
+    depends_on:
+      - mongo
+    env_file:
+      - ./.env.example
+
+  items:
+    build: ./subgraphs/items
+    volumes:
+      - subgraphs_data:/subgraphs
+      - ./config:/app/config
+    depends_on:
+      - mongo
+    env_file:
+      - ./.env.example
+
+  transactions:
+    build: ./subgraphs/transactions
     volumes:
       - subgraphs_data:/subgraphs
       - ./config:/app/config
