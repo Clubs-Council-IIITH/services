@@ -83,7 +83,7 @@ services:
     # build: ./apis/files
     volumes:
       - $STORAGE_MOUNT/files1:/files
-      - $STORAGE_MOUNT/static_files:/static_files:ro
+      - $STORAGE_MOUNT/static_files:/static_files
       - $STORAGE_MOUNT/logging_config:/app/config
     env_file:
       - $CC_CONFIG_PATH/prod/global
