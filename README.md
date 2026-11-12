@@ -48,21 +48,15 @@ git push
 
 ## Deployment
 
-
-To run deployment related tasks, run the following script:
+Deployment scripts (`deploy.sh`, the deploy check, and remote setup) live in the
+[setup repo](https://github.com/Clubs-Council-IIITH/setup), which should be cloned
+next to this one. From the setup repo:
 
 ```bash
-./deploy.sh <option>
+scripts/deploy.sh <command>
 ```
-with the following options:
-- `setup` - To setup the deployment environment and adding the remote repository.
-- `prod` - To deploy the services in production environment.
-- `staging` - To deploy the services in staging environment.
-- `submodules` - To update all of the submodules on the server.
-- `github` - To update the submodules and repository on GitHub. This also prunes the old remote branch references from your local repository, to be in sync with the remote repository.
-- `*` - To see the list of available options.
 
-_NOTE_: The above script assumes that you have the necessary permissions to deploy the services.
+See the setup repo README for the available commands.
 
 ## Connecting to mongo container using mongo compass
 
